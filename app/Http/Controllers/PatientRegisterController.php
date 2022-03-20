@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\PatientRegister;
+use Illuminate\Http\Request;
 
 class PatientRegisterController extends Controller
 {
@@ -60,10 +60,10 @@ class PatientRegisterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\PatientRegister  $patient_register
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PatientRegister $patient_register)
     {
         //
     }
@@ -71,10 +71,10 @@ class PatientRegisterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\PatientRegister  $patient_register
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PatientRegister $patient_register)
     {
         //
     }
@@ -83,10 +83,10 @@ class PatientRegisterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\PatientRegister  $patient_register
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, PatientRegister $patient_register)
     {
         //
     }
@@ -94,10 +94,10 @@ class PatientRegisterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\PatientRegister  $patient_register
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PatientRegister $patient_register)
     {
         //
     }

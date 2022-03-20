@@ -1,0 +1,7 @@
+<div class="preloader">
+    <div class="three-bounce">
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three"></div>
+    </div>
+  </div>
