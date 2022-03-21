@@ -17,7 +17,7 @@ class CreatePatientRegistersTable extends Migration
         Schema::create('patient_registers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained();
-            $table->string('register_number');
+            $table->string('register_number')->unique();
             $table->string('status');
             $table->string('start_date');
             $table->string('end_date');
