@@ -158,22 +158,22 @@
   });
 
   function datetime_picker() {
-    if ($("#datetimepicker3").length > 0) {
-      $("#datetimepicker3").datetimepicker({
-        pickTime: false,
-        locale: "fr",
-        format: "L",
+    if ($("#datetimepicker_ttl").length > 0) {
+      $("#datetimepicker_ttl").datetimepicker({
+        maxDate: new Date,
+        locale: "en",
+        format: "YYYY-MM-DD",
       });
     }
   }
   datetime_picker();
 
   function datetime_picker2() {
-    if ($("#datetimepicker5").length > 0) {
-      $("#datetimepicker5").datetimepicker({
-        pickTime: false,
-        locale: "fr",
-        format: "L",
+    if ($("#datetimepicker_rapid_test").length > 0) {
+      $("#datetimepicker_rapid_test").datetimepicker({
+        minDate: new Date(),
+        locale: "en",
+        format: "YYYY-MM-DD",
       });
     }
   }
@@ -182,7 +182,9 @@
   function time_picker2() {
     if ($("#datetimepicker4").length > 0) {
       $("#datetimepicker4").datetimepicker({
-        format: "LT",
+        format: 'HH:mm',
+        pick12HourFormat: false,
+        disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 20, 21, 22, 23, 24],
       });
     }
   }

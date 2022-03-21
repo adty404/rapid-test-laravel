@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\PatientRegister;
+use App\Http\Controllers\PatientRegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('patient-register', PatientRegister::class);
+Route::redirect('/', '/patient-register');
+Route::resource('patient-register', PatientRegisterController::class);

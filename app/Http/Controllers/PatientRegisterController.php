@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PatientRegister;
+use App\Action\CreatePatientAction;
+use App\Action\CreatePatientRegisterAction;
 use Illuminate\Http\Request;
+use App\Models\PatientRegister;
+use App\Http\Requests\Patient\PatientRequest;
+use App\Http\Requests\PatientRegister\PatientRegisterRequest;
 
 class PatientRegisterController extends Controller
 {
@@ -14,7 +18,7 @@ class PatientRegisterController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.front.patient-register');
     }
 
     /**
@@ -33,28 +37,15 @@ class PatientRegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientRequest $patientRequest, PatientRegisterRequest $patientRegisterRequest)
     {
-        $checkBooking = PatientRegister::where('start_date', '<=', $request->start_date)
-                                    ->where('end_date', '>=', $request->start_date)
-                                    ->first();
+        //create new patient
+        $actionPatient = new CreatePatientAction();
+        $actionPatient->execute($patientRequest);
 
-
-        // $waktuMulai = WaktuMulai::all();
-        // foreach($waktuMulai as $wm){
-        //     $waktuMulaiMDY = $wm['m_d_y'];
-        //     $waktuMulaiJAM = $wm['jam'];
-        // }
-
-        // $waktuTampil = WaktuTampil::all();
-        // foreach($waktuTampil as $wt){
-        //     $waktuTampilMDY = $wt['m_d_y'];
-        //     $waktuTampilJAM = $wt['jam'];
-        // }
-
-        // $data_waktu_mulai  = date("$waktuMulaiMDY $waktuMulaiJAM");
-        // $data_waktu_tampil = date("$waktuTampilMDY $waktuTampilJAM");
-        // $now               = date("m/d/Y G:i");
+        //create new patient register
+        $actionPatientRegister = new CreatePatientRegisterAction();
+        $actionPatientRegister->execute($patientRegisterRequest, $actionPatient);
     }
 
     /**

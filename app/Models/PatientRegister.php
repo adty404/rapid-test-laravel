@@ -29,4 +29,15 @@ class PatientRegister extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function is_date_exist($data_patient_register){
+        $patientRegister = PatientRegister::query();
+        return $patientRegister->where([
+            ['start_date', '<=', $data_patient_register['start_date']],
+            ['end_date', '>=', $data_patient_register['start_date']],
+        ])->orWhere([
+            ['start_date', '<=', $data_patient_register['end_date']],
+            ['end_date', '>=', $data_patient_register['end_date']]
+        ])->first();
+    }
 }

@@ -13,7 +13,7 @@
                 <li><a href="#">Form Pendaftaran</a></li>
             </ul>
         </div>
-        <div class="row appointment_box">
+        <div class="row appointment_box pad-top">
             <div class="col-lg-4 appoinment_features">
                 <div class="shape one" data-parallax='{"y": 100}'>
                     <img src="assets/images/appoinment/a_img1.png" alt="" />
@@ -39,76 +39,133 @@
                 </p>
             </div>
             <div class="col-lg-8">
-                <form action="#" class="appoinment_form">
+                @if ($errors->any())
+                <div class="alert alert-danger" style="margin-top: 20px">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form action="{{ route('patient-register.store') }}" method="POST" class="appoinment_form">
+
+                    @csrf
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="name" name="name" placeholder="" />
-                                <label><i class="lnr lnr-user"></i>Nama</label>
+                                <input class="form-control" type="number" id="nik" name="nik" value="{{ old('nik') }}" @if ($errors->any()) placeholder="Nik" @endif required />
+                                @if (!$errors->any())
+                                    <label><i class="lnr lnr-user"></i>Nik</label>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="birth_place" name="birth_place" placeholder="" />
-                                <label><i class="lnr lnr-map-marker"></i>Tempat Lahir</label>
+                                <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}" @if ($errors->any()) placeholder="Nama" @endif required />
+                                @if (!$errors->any())
+                                    <label><i class="lnr lnr-user"></i>Nama</label>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="form-group input-group date" id="datetimepicker3" data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker3"
+                            <div class="form-group">
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value=""></option>
+                                    <option value="L">Laki-laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                                <label for="gender"><i class="lnr lnr-select"></i>Jenis Kelamin</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input class="form-control" type="number" id="phone" name="phone"
+                                    value="{{ old('phone') }}" @if ($errors->any()) placeholder="Nomor HP" @endif
+                                    required />
+                                @if (!$errors->any())
+                                    <label><i class="lnr lnr-smartphone"></i>Nomor HP</label>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="birth_place" name="birth_place"
+                                    value="{{ old('birth_place') }}" @if ($errors->any()) placeholder="Tempat Lahir" @endif required />
+                                @if (!$errors->any())
+                                    <label><i class="lnr lnr-map-marker"></i>Tempat Lahir</label>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group input-group date" id="datetimepicker_ttl" data-target-input="nearest">
+                                <div class="input-group-append" data-target="#datetimepicker_ttl"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text">
                                         <i class="lnr lnr-calendar-full"></i>
                                     </div>
                                 </div>
-                                <div class="text_div">
-                                    Tanggal Lahir
-                                </div>
+                                @if (!$errors->has('birth_date'))
+                                    <div class="text_div">
+                                        Tanggal Lahir
+                                    </div>
+                                @endif
+
                                 <input type="text" name="birth_date" class="form-control datetimepicker-input"
-                                    data-target="#datetimepicker3" data-toggle="datetimepicker" />
+                                    data-target="#datetimepicker_ttl" data-toggle="datetimepicker" @error('birth_date') placeholder="Tanggal Lahir" @enderror required />
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="form-group input-group date" id="datetimepicker5" data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker5"
+                            <div class="form-group input-group date" id="datetimepicker_rapid_test" data-target-input="nearest">
+                                <div class="input-group-append" data-target="#datetimepicker_rapid_test"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text">
                                         <i class="lnr lnr-calendar-full"></i>
                                     </div>
                                 </div>
-                                <div class="text_div">
-                                    Tanggal Rapid Test
-                                </div>
+                                @if (!$errors->has('start_date'))
+                                    <div class="text_div">
+                                        Tanggal Rapid Test
+                                    </div>
+                                @endif
                                 <input type="text" name="start_date" class="form-control datetimepicker-input"
-                                    data-target="#datetimepicker5" data-toggle="datetimepicker" />
+                                    data-target="#datetimepicker_rapid_test" data-toggle="datetimepicker" @error('start_date') placeholder="Tanggal Rapid Test" @enderror required />
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group input-group date" id="datetimepicker4" data-target-input="nearest">
                                 <div class="input-group-append" data-target="#datetimepicker4"
                                     data-toggle="datetimepicker">
-                                    <div class="input-group-text">
-                                        <i class="lnr lnr-clock"></i>
+                                        <div class="input-group-text">
+                                            <i class="lnr lnr-clock"></i>
+                                        </div>
+                                </div>
+                                @if (!$errors->has('start_time'))
+                                    <div class="text_div">
+                                        Jam Rapid Test
                                     </div>
-                                </div>
-                                <div class="text_div">
-                                    Jam Rapid Test
-                                </div>
+                                @endif
                                 <input type="text" name="start_time" class="form-control datetimepicker-input"
-                                    data-target="#datetimepicker4" data-toggle="datetimepicker" />
+                                    data-target="#datetimepicker4" data-toggle="datetimepicker" @error('start_time') placeholder="Jam Rapid Test" @enderror required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <textarea name="address" id="address" cols="30" rows="10"
-                                    class="form-control"></textarea>
-                                <label><i class="lnr lnr-home"></i>Alamat</label>
+                                <textarea name="address" id="address" cols="30" rows="10" class="form-control"
+                                    required>{{ old('address') }}</textarea>
+                                @if (!$errors->any())
+                                    <label><i class="lnr lnr-home"></i>Alamat</label>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <div class="form-group checkbox_field">
-                                <button type="submit" class="green_btn" value="appoinment" data-value="appoinment">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
                                     Submit
+                                </button>
+                                <button type="reset" class="btn btn-warning">
+                                    Reset
                                 </button>
                             </div>
                         </div>
@@ -133,9 +190,12 @@
                         <li class="wow fadeInUp" data-wow-delay="0.1s">Isi data anda pada form di atas
                         </li>
                         <li class="wow fadeInUp" data-wow-delay="0.2s">Tentukan tanggal dan jam untuk rapid test</li>
-                        <li class="wow fadeInUp" data-wow-delay="0.3s">Sistem akan memvalidasi tanggal dan jam yang anda isikan</li>
-                        <li class="wow fadeInUp" data-wow-delay="0.4s">Pendaftaran berhasil, simpan nomor pendaftaran / QR Code anda</li>
-                        <li class="wow fadeInUp" data-wow-delay="0.5s">Datang ke klinik dan berikan nomor pendaftaran / QR Code ke petugas</li>
+                        <li class="wow fadeInUp" data-wow-delay="0.3s">Sistem akan memvalidasi tanggal dan jam yang anda
+                            isikan</li>
+                        <li class="wow fadeInUp" data-wow-delay="0.4s">Pendaftaran berhasil, simpan nomor pendaftaran /
+                            QR Code anda</li>
+                        <li class="wow fadeInUp" data-wow-delay="0.5s">Datang ke klinik dan berikan nomor pendaftaran /
+                            QR Code ke petugas</li>
                     </ol>
                 </div>
             </div>
