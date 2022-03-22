@@ -29,7 +29,7 @@
         <!--================End Mobile Canvus Menu Area =================-->
 
         <!--================Header Area =================-->
-        @include('includes.front.header')
+        @stack('header')
         <!--================End Header Area =================-->
 
         {{-- content --}}

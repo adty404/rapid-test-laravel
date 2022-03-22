@@ -2,6 +2,38 @@
 
 @section('title', 'Pendaftaran Rapid Test')
 
+@push('addon-style')
+<link rel="stylesheet" href="assets/vendors/datetimepicker/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet" href="assets/vendors/animate-css/animate.css" />
+@endpush
+
+@push('header')
+<header class="header_area">
+    <div class="main_menu">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Klinik Mutiara</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="active"><a href="#">Appointment</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="right_burger">
+            <ul class="nav">
+                <li>
+                    <div class="menu_btn">
+                        <img src="assets/images/icon/burger.png" alt="" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+@endpush
+
 @section('content')
 <!--================Breadcrumb Area =================-->
 <section class="breadcrumb_area boi_breadcrumb">
@@ -41,6 +73,9 @@
             <div class="col-lg-8">
                 @if ($errors->any())
                 <div class="alert alert-danger" style="margin-top: 20px">
+                    <h5>
+                        <i class="fa fa-exclamation-triangle"></i> Error !!
+                    </h5>
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -57,7 +92,7 @@
                             <div class="form-group">
                                 <input class="form-control" type="number" id="nik" name="nik" value="{{ old('nik') }}" @if ($errors->any()) placeholder="Nik" @endif required />
                                 @if (!$errors->any())
-                                    <label><i class="lnr lnr-user"></i>Nik</label>
+                                    <label><i class="fa fa-id-card"></i>Nik</label>
                                 @endif
                             </div>
                         </div>
@@ -65,7 +100,7 @@
                             <div class="form-group">
                                 <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}" @if ($errors->any()) placeholder="Nama" @endif required />
                                 @if (!$errors->any())
-                                    <label><i class="lnr lnr-user"></i>Nama</label>
+                                    <label><i class="fa fa-user"></i>Nama</label>
                                 @endif
                             </div>
                         </div>
@@ -76,7 +111,7 @@
                                     <option value="L">Laki-laki</option>
                                     <option value="P">Perempuan</option>
                                 </select>
-                                <label for="gender"><i class="lnr lnr-select"></i>Jenis Kelamin</label>
+                                <label for="gender"><i class="fa fa-user-friends"></i>Jenis Kelamin</label>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -85,7 +120,7 @@
                                     value="{{ old('phone') }}" @if ($errors->any()) placeholder="Nomor HP" @endif
                                     required />
                                 @if (!$errors->any())
-                                    <label><i class="lnr lnr-smartphone"></i>Nomor HP</label>
+                                    <label><i class="fa fa-phone"></i>Nomor HP</label>
                                 @endif
                             </div>
                         </div>
@@ -94,7 +129,7 @@
                                 <input class="form-control" type="text" id="birth_place" name="birth_place"
                                     value="{{ old('birth_place') }}" @if ($errors->any()) placeholder="Tempat Lahir" @endif required />
                                 @if (!$errors->any())
-                                    <label><i class="lnr lnr-map-marker"></i>Tempat Lahir</label>
+                                    <label><i class="fa fa-map-marker-alt"></i>Tempat Lahir</label>
                                 @endif
                             </div>
                         </div>
@@ -103,7 +138,7 @@
                                 <div class="input-group-append" data-target="#datetimepicker_ttl"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text">
-                                        <i class="lnr lnr-calendar-full"></i>
+                                        <i class="fa fa-calendar-alt"></i>
                                     </div>
                                 </div>
                                 @if (!$errors->has('birth_date'))
@@ -121,7 +156,7 @@
                                 <div class="input-group-append" data-target="#datetimepicker_rapid_test"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text">
-                                        <i class="lnr lnr-calendar-full"></i>
+                                        <i class="fa fa-calendar-alt"></i>
                                     </div>
                                 </div>
                                 @if (!$errors->has('start_date'))
@@ -138,7 +173,7 @@
                                 <div class="input-group-append" data-target="#datetimepicker4"
                                     data-toggle="datetimepicker">
                                         <div class="input-group-text">
-                                            <i class="lnr lnr-clock"></i>
+                                            <i class="fa fa-clock"></i>
                                         </div>
                                 </div>
                                 @if (!$errors->has('start_time'))
@@ -155,7 +190,7 @@
                                 <textarea name="address" id="address" cols="30" rows="10" class="form-control"
                                     required>{{ old('address') }}</textarea>
                                 @if (!$errors->any())
-                                    <label><i class="lnr lnr-home"></i>Alamat</label>
+                                    <label><i class="fa fa-home"></i>Alamat</label>
                                 @endif
                             </div>
                         </div>
@@ -234,7 +269,7 @@
                 </div>
             </div>
             <div class="right">
-                <a class="icon_btn" href="#">Daftar <i class="lnr lnr-arrow-top"></i></a>
+                <a class="icon_btn" href="#">Daftar <i class="fa fa-arrow-alt-circle-right"></i></a>
             </div>
         </div>
     </div>
@@ -242,24 +277,9 @@
 <!--================End Check Now Area =================-->
 @endsection
 
-@push('modal')
-<div class="modal fade search_modal" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <img src="assets/images/icon/close-white.png" alt="">
-    </button>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Type here..."
-                        aria-label="Recipient's username">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button"><i
-                                class="lnr lnr-magnifier"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@push('addon-script')
+<script src="assets/vendors/datetimepicker/moment.js"></script>
+<script src="assets/vendors/datetimepicker/tempusdominus-bootstrap-4.min.js"></script>
+<script src="assets/vendors/animate-css/wow.min.js"></script>
+<script src="assets/js/theme.js"></script>
 @endpush

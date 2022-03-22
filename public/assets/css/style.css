@@ -2,7 +2,7 @@
 /*----------------------------------------------------
 @File: Default Styles
 @Author: paul_tf
-@URL: 
+@URL:
 Author E-mail: ronymia015@gmail.com
 
 This file contains the styling for the actual template, this
@@ -13,7 +13,7 @@ theme.
 @Template Name: Epidemic
 @Author: paul_tf
 @Developed By: Rony
-@Developer URL: http://rocky.wethemez.com 
+@Developer URL: http://rocky.wethemez.com
 Author E-mail: ronymia015@gmail.com
 
 @Default Styles
@@ -27,14 +27,14 @@ Table of Content:
 06/ breadcrumb
 07/ about
 08/ team
-09/ project 
-10/ price 
-11/ team 
-12/ blog 
-13/ video  
-14/ features  
-15/ career  
-16/ contact 
+09/ project
+10/ price
+11/ team
+12/ blog
+13/ video
+14/ features
+15/ career
+16/ contact
 17/ footer
 
 =====================================================================*/
@@ -4611,6 +4611,22 @@ button:focus {
   transition: color 0.2s linear;
 }
 
+.corona_question_failed {
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 10px 40px 0px rgba(51, 48, 78, 0.15);
+    position: relative;
+    color: #58547e;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    overflow: hidden;
+    transition: color 0.2s linear;
+  }
+
 .corona_question .icon {
   width: 70px;
   line-height: 70px;
@@ -4621,8 +4637,22 @@ button:focus {
   margin-right: 20px;
 }
 
+.corona_question_failed .icon-failed {
+    width: 70px;
+    line-height: 70px;
+    text-align: center;
+    background: #e22424;
+    color: #fff;
+    font-size: 36px;
+    margin-right: 20px;
+  }
+
 .corona_question:hover {
   color: #01cfbe;
+}
+
+.corona_question_failed:hover {
+    color: #e22424;
 }
 
 /* End coronavirus_question_area css
@@ -7057,3 +7087,4 @@ blockquote {
 ============================================================================================ */
 /*---------------------------------------------------- */
 /*# sourceMappingURL=style.css.map */
+

@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/patient-register');
 Route::resource('patient-register', PatientRegisterController::class);
+
+Route::get('/status', function(){
+    return view('pages.front.status');
+});
