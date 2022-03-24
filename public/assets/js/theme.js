@@ -184,7 +184,7 @@
       $("#datetimepicker4").datetimepicker({
         format: 'HH:mm',
         pick12HourFormat: false,
-        disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 20, 21, 22, 23, 24],
+        disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 13, 14, 15, 20, 21, 22, 23, 24],
       });
     }
   }
