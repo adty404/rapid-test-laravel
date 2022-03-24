@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\front;
 
 use App\Action\CreatePatientAction;
 use App\Action\CreatePatientRegisterAction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\PatientRegister;
 use App\Http\Requests\Patient\PatientRequest;
 use App\Http\Requests\PatientRegister\PatientRegisterRequest;
@@ -18,7 +19,7 @@ class PatientRegisterController extends Controller
      */
     public function index()
     {
-        return view('pages.front.patient-register');
+        return view('pages.front.patient-register.index');
     }
 
     /**
@@ -45,7 +46,7 @@ class PatientRegisterController extends Controller
 
         //create new patient register
         $actionPatientRegister = new CreatePatientRegisterAction();
-        $actionPatientRegister->execute($patientRegisterRequest, $actionPatient);
+        return $actionPatientRegister->execute($patientRegisterRequest, $actionPatient);
     }
 
     /**
@@ -91,5 +92,15 @@ class PatientRegisterController extends Controller
     public function destroy(PatientRegister $patient_register)
     {
         //
+    }
+
+    public function check($register_number)
+    {
+        $patientRegister = PatientRegister::where('register_number', $register_number)->first();
+        if ($patientRegister) {
+            return view('pages.front.status', ['data' => $patientRegister]);
+        } else {
+            return view('pages.front.status', ['data' => 'Register number not found']);
+        }
     }
 }

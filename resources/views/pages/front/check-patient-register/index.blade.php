@@ -1,9 +1,9 @@
 @extends('layouts.front')
 
-@section('title', 'Status Pendaftaran')
+@section('title', 'Cek Data Pendaftaran')
 
 @push('header')
-@include('includes.front.header.header-status')
+@include('includes.front.header.header-check-patient-register')
 @endpush
 
 @section('content')
@@ -13,7 +13,7 @@
     <div class="container">
         <div class="breadcrumb_content text-center">
             <h6>Klinik Mutiara</h6>
-            <h2>Status Pendaftaran Rapid Test</h2>
+            <h2>Data Pendaftaran Rapid Test</h2>
             <form action="#" class="faq_search">
                 <div class="control-with-icon">
                     <input type="text" class="form-control" placeholder="Silahkan masukkan nomor registrasi anda ..." required="" />

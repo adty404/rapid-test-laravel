@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\PatientRegisterController;
+use App\Http\Controllers\front\PatientRegisterCheckController;
+use App\Http\Controllers\front\PatientRegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/patient-register');
+
 Route::resource('patient-register', PatientRegisterController::class);
 
-Route::get('/status', function(){
-    return view('pages.front.status');
-});
+Route::get('check-patient-register', [PatientRegisterCheckController::class, 'index'])
+    ->name('check-patient-register.index');
+Route::get('check-patient-register/{register_number}', [PatientRegisterCheckController::class, 'check'])
+    ->name('check-patient-register.check');

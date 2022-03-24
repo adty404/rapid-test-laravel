@@ -3,9 +3,17 @@
       <img src="assets/images/icon/close-dark.png" alt="">
     </div>
     <div class="menu_part_lux">
-      <ul class="menu_list wd_scroll">
-        <li><a href="#">Appointment</a></li>
-        <li><a href="#">Status</a></li>
+      <ul class="nav menu_list wd_scroll">
+        <li class="{{ (request()->is('patient-register*')) ? 'active' : '' }}">
+            <a href="{{ route('patient-register.index') }}">
+                Pendaftaran
+            </a>
+        </li>
+        <li class="{{ (request()->is('check-patient-register*')) ? 'active' : '' }}">
+            <a href="{{ route('check-patient-register.index') }}">
+                Cek Data Pendaftaran
+            </a>
+        </li>
       </ul>
     </div>
   </div>

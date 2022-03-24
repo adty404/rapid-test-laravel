@@ -5,8 +5,16 @@
                 <a class="navbar-brand" href="#">Klinik Mutiara</a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="active"><a href="#">Appointment</a></li>
-                        <li><a href="#">Status</a></li>
+                        <li class="{{ (request()->is('patient-register*')) ? 'active' : '' }}">
+                            <a href="{{ route('patient-register.index') }}">
+                                Pendaftaran
+                            </a>
+                        </li>
+                        <li class="{{ (request()->is('check-patient-register*')) ? 'active' : '' }}">
+                            <a href="{{ route('check-patient-register.index') }}">
+                                Cek Data Pendaftaran
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

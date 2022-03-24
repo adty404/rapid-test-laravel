@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace App\Http\Controllers\front;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PatientController extends Controller
+class TestResultController extends Controller
 {
     /**
      * Display a listing of the resource.
