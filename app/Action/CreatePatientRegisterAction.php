@@ -6,9 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\PatientRegister;
 
-class CreatePatientRegisterAction{
+class CreatePatientRegisterAction
+{
 
-    public function execute($patientRegisterRequest, $actionPatient){
+    public function execute($patientRegisterRequest, $actionPatient)
+    {
         $data_patient_register = $patientRegisterRequest->all();
 
         //define some patient register column
@@ -25,19 +27,19 @@ class CreatePatientRegisterAction{
         $patientRegister = new PatientRegister;
         $is_date_exist = $patientRegister->is_date_exist($data_patient_register);
 
-        if($is_date_exist){
-            echo "Date exist";
-        }else{
+        if ($is_date_exist) {
+            return view('pages.front.patient-register.index', ['data' => $is_date_exist]);
+            // return redirect()->route('patient-register.index')->with('data', $is_date_exist);
+        } else {
             //create new patient register
             $patientRegister = PatientRegister::create($data_patient_register);
             dd($patientRegister);
         }
-
     }
 
     public function generateRegisterNumber($data)
     {
-        $register_number = 'PST-' . $data;
+        $register_number = 'P-' . $data;
         return $register_number;
     }
 }
