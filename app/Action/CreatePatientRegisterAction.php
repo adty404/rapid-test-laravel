@@ -15,7 +15,7 @@ class CreatePatientRegisterAction
 
         //define some patient register column
         $data_patient_register['patient_id'] = $actionPatient->getPatientId();
-        $data_patient_register['register_number'] = $this->generateRegisterNumber(strtolower(Str::random(8)));
+        $data_patient_register['register_number'] = $this->generateRegisterNumber(strtoupper(Str::random(8)));
         $data_patient_register['status'] = PatientRegister::ACCEPTED;
 
         //formatting end date

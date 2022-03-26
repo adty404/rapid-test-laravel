@@ -13,13 +13,30 @@ class PatientRegisterCheckController extends Controller
         return view('pages.front.check-patient-register.index');
     }
 
-    public function check($register_number)
+    public function check(Request $request)
     {
-        $patient_register = PatientRegister::where('register_number', $register_number)->first();
-        if ($patient_register) {
-            return view('pages.front.check-patient-register.index', compact('patient_register'));
-        } else {
-            return redirect()->route('check-patient-register.index')->with('error', 'ไม่พบข้อมูลที่ต้องการ');
+        $this->validate($request, [
+            'register_number' => 'required|string|max:255',
+        ]);
+
+        $patientRegister = PatientRegister::where('register_number', $request->register_number)->first();
+
+        if ($patientRegister) {
+            // return 'ada ' . $patientRegister->register_number;
+            return redirect()->route('check-patient-register.show', $request->register_number);
         }
+
+        return redirect()->route('check-patient-register.index')->with('data', 'Nomor Registrasi tidak ditemukan!');
+    }
+
+    public function show($registerNumber)
+    {
+        $patientRegister = PatientRegister::where('register_number', $registerNumber)->first();
+        if (!$patientRegister) {
+            return redirect()->route('check-patient-register.index')->with('data', 'Nomor Registrasi tidak ditemukan!');
+        }
+        return view('pages.front.check-patient-register.show', [
+            'data' => $patientRegister,
+        ]);
     }
 }

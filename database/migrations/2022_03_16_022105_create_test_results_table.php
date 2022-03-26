@@ -15,7 +15,7 @@ class CreateTestResultsTable extends Migration
     {
         Schema::create('test_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_register_id')->constrained();
+            $table->foreignId('patient_register_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('result');
             $table->timestamps();
         });

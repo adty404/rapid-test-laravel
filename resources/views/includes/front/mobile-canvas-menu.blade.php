@@ -1,6 +1,6 @@
 <div class="mobile_canvus_menu">
     <div class="close_btn">
-      <img src="assets/images/icon/close-dark.png" alt="">
+      <img src="{{ asset('assets/images/icon/close-dark.png') }}" alt="">
     </div>
     <div class="menu_part_lux">
       <ul class="nav menu_list wd_scroll">

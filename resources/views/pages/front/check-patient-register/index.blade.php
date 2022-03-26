@@ -14,113 +14,59 @@
         <div class="breadcrumb_content text-center">
             <h6>Klinik Mutiara</h6>
             <h2>Data Pendaftaran Rapid Test</h2>
-            <form action="#" class="faq_search">
+
+            @if (session('data'))
+                <div class="alert alert-danger" style="margin-top: 20px">
+                    <h5>
+                        <i class="fa fa-exclamation-triangle"></i> Error !!
+                    </h5>
+                    <p>{{ session('data') }}</p>
+                </div>
+            @endif
+            
+            <form action="{{ route('check-patient-register.check') }}" method="POST" class="faq_search">
+                @csrf
                 <div class="control-with-icon">
-                    <input type="text" class="form-control" placeholder="Silahkan masukkan nomor registrasi anda ..." required="" />
-                    <span class="control-icon"><i class="fa fa-search"></i></span>
+                    <input type="text" name="register_number" class="form-control" placeholder="Silahkan masukkan nomor registrasi anda ..." required="" />
+                    <span class="control-icon">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </span>
                 </div>
             </form>
         </div>
     </div>
 </section>
 <!--================End braeadcrum Area =================-->
-<!--================Start coronavirus question Area =================-->
-<section class="coronavirus_question_area">
+<!--================Starrt Work Area =================-->
+<section class="work_area">
     <div class="container">
-        <div class="main_title text-center">
-            <h2>Status Registrasi</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12 col-6">
-                <a href="#" class="corona_question">
-                    <div class="icon">
-                        <i class="fa fa-check-circle"></i>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="work_content">
+                    <div class="main_title">
+                        <h2>Alur pendaftaran rapid test</h2>
                     </div>
-                    Diterima
-                </a>
+                    <ol class="work_list">
+                        <li class="wow fadeInUp" data-wow-delay="0.1s">Isi data anda pada form di atas
+                        </li>
+                        <li class="wow fadeInUp" data-wow-delay="0.2s">Tentukan tanggal dan jam untuk rapid test</li>
+                        <li class="wow fadeInUp" data-wow-delay="0.3s">Sistem akan memvalidasi tanggal dan jam yang anda
+                            isikan</li>
+                        <li class="wow fadeInUp" data-wow-delay="0.4s">Pendaftaran berhasil, simpan nomor pendaftaran /
+                            QR Code anda</li>
+                        <li class="wow fadeInUp" data-wow-delay="0.5s">Datang ke klinik dan berikan nomor pendaftaran /
+                            QR Code ke petugas</li>
+                    </ol>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 col-6">
-                <a href="#" class="corona_question_failed">
-                    <div class="icon-failed">
-                        <i class="fa fa-times-circle"></i>
-                    </div>
-                    Ditolak
-                </a>
+            <div class="col-lg-6 text-center">
+                <img data-wow-delay="400ms" class="img-fluid wow fadeInRight" src="assets/images/appoinment/works.jpg"
+                    alt="">
             </div>
         </div>
     </div>
 </section>
-<section class="common_question_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="common_question_item">
-                    <h3>Data Registrasi</h3>
-                    <table>
-                        <tr>
-                            <td>Nik</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Nama</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Kelamin</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Nomor HP</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Tempat Lahir</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Tanggal Lahir</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Alamat</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="common_question_item">
-                    <h3>Jadwal Rapid Test dan QR Code</h3>
-                    <table>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Jam</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>QR Code</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End coronavirus question Area =================-->
+<!--================End work Area =================-->
 
 <!--================Client Logo Area =================-->
 <section class="client_logo_area pad_top">

@@ -20,6 +20,11 @@ class PatientRegister extends Model
         'end_date',
     ];
 
+    protected $dates = [
+        'start_date',
+        'end_date',
+    ];
+
     public function testResults()
     {
         return $this->hasOne(TestResult::class);

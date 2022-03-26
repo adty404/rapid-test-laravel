@@ -23,7 +23,7 @@
             <ul class="nav">
                 <li>
                     <div class="menu_btn">
-                        <img src="assets/images/icon/burger.png" alt="" />
+                        <img src="{{ asset('assets/images/icon/burger.png') }}" alt="" />
                     </div>
                 </li>
             </ul>

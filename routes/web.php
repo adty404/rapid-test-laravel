@@ -17,9 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/patient-register');
 
+//Patient Register
 Route::resource('patient-register', PatientRegisterController::class);
 
+//Check Patient Register
 Route::get('check-patient-register', [PatientRegisterCheckController::class, 'index'])
     ->name('check-patient-register.index');
-Route::get('check-patient-register/{register_number}', [PatientRegisterCheckController::class, 'check'])
+Route::post('check-patient-register', [PatientRegisterCheckController::class, 'check'])
     ->name('check-patient-register.check');
+
+Route::get('check-patient-register/{registerNumber}', [PatientRegisterCheckController::class, 'show'])
+    ->name('check-patient-register.show');
