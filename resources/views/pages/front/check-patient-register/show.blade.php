@@ -114,7 +114,7 @@
                         <tr>
                             <td><b>QR Code</b></td>
                             <td><b>:</b></td>
-                            <td></td>
+                            <td><img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate($link)) !!} "></td>
                         </tr>
                     </table>
                 </div>

@@ -35,8 +35,10 @@ class PatientRegisterCheckController extends Controller
         if (!$patientRegister) {
             return redirect()->route('check-patient-register.index')->with('data', 'Nomor Registrasi tidak ditemukan!');
         }
+
         return view('pages.front.check-patient-register.show', [
             'data' => $patientRegister,
+            'link' => route('check-patient-register.show', $patientRegister->register_number),
         ]);
     }
 }
