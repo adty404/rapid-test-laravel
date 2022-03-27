@@ -5,6 +5,7 @@ namespace App\Action;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\PatientRegister;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CreatePatientRegisterAction
 {
@@ -33,7 +34,9 @@ class CreatePatientRegisterAction
         } else {
             //create new patient register
             $patientRegister = PatientRegister::create($data_patient_register);
-            dd($patientRegister);
+
+            Alert::success('Success', 'Pendaftaran Berhasil');
+            return redirect()->route('patient-register.success', $patientRegister->register_number);
         }
     }
 

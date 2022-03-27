@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PatientRegister;
 use App\Http\Requests\Patient\PatientRequest;
 use App\Http\Requests\PatientRegister\PatientRegisterRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientRegisterController extends Controller
 {
@@ -94,13 +95,15 @@ class PatientRegisterController extends Controller
         //
     }
 
-    public function check($register_number)
+    public function success($register_number)
     {
         $patientRegister = PatientRegister::where('register_number', $register_number)->first();
-        if ($patientRegister) {
-            return view('pages.front.status', ['data' => $patientRegister]);
-        } else {
-            return view('pages.front.status', ['data' => 'Register number not found']);
+        if (!$patientRegister) {
+            Alert::error('Error', 'Nomor Pendaftaran tidak ditemukan');
+            return redirect()->route('patient-register.index');
         }
+        return view('pages.front.patient-register.success-register', [
+            'data' => $patientRegister,
+        ]);
     }
 }

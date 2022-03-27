@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\front\PatientRegisterCheckController;
 use App\Http\Controllers\front\PatientRegisterController;
+use App\Models\PatientRegister;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::redirect('/', '/patient-register');
 
 //Patient Register
 Route::resource('patient-register', PatientRegisterController::class);
+Route::get('patient-register/success/{register_number}', [PatientRegisterController::class, 'success'])->name('patient-register.success');
 
 //Check Patient Register
 Route::get('check-patient-register', [PatientRegisterCheckController::class, 'index'])

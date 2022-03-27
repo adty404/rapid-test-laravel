@@ -12,6 +12,7 @@
 @endpush
 
 @section('content')
+@include('sweetalert::alert')
 <!--================Breadcrumb Area =================-->
 <section class="breadcrumb_area boi_breadcrumb">
     <div class="container">
