@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input class="form-control" type="number" id="nik" name="nik"
+                                <input class="form-control @error('nik') is-invalid @else is-valid @enderror" type="number" id="nik" name="nik"
                                     value="{{ $patient->nik ?? old('nik') }}" required readonly />
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                     Tanggal Rapid Test
                                 </div>
                                 @endif
-                                <input type="text" name="start_date" class="form-control datetimepicker-input"
+                                <input type="text" name="start_date" class="form-control @error('start_date') is-invalid @else is-valid @enderror datetimepicker-input"
                                     data-target="#datetimepicker_rapid_test" data-toggle="datetimepicker"
                                     @error('start_date') placeholder="Tanggal Rapid Test" @enderror required />
                             </div>
@@ -116,7 +116,7 @@
                                     Jam Rapid Test
                                 </div>
                                 @endif
-                                <input type="text" name="start_time" class="form-control datetimepicker-input"
+                                <input type="text" name="start_time" class="form-control @error('start_time') is-invalid @else is-valid @enderror datetimepicker-input"
                                     data-target="#datetimepicker4" data-toggle="datetimepicker" @error('start_time')
                                     placeholder="Jam Rapid Test" @enderror required />
                             </div>
