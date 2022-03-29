@@ -87,8 +87,13 @@
                             <td><b>Waktu Pendaftaran terakhir</b></td>
                             <td><b>:</b></td>
                             <td><b>
-                                {{ $patientRegister->created_at->format('Y-m-d') }}, jam
-                                {{ $patientRegister->created_at->format('H:i:s') }} ({{ $patientRegister->register_number }})
+                                <form action="{{ route('check-patient-register.check') }}" method="POST" target="_blank">
+                                    {{ $patientRegister->created_at->format('Y-m-d') }}, jam
+                                    {{ $patientRegister->created_at->format('H:i:s') }}, <br /> nomor pendaftaran :
+                                    @csrf
+                                    <input type="hidden" name="register_number" value="{{ $patientRegister->register_number }}">
+                                    <button type="submit" class="btn btn-sm btn-primary">{{ $patientRegister->register_number }}</button>
+                                </form>
                                 </b>
                             </td>
                         </tr>
