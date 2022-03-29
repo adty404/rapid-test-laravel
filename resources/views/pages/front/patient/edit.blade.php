@@ -85,57 +85,43 @@
                     </ul>
                 </div>
                 @endif --}}
-                <form action="{{ route('patient-register.store') }}" method="POST" class="appoinment_form">
+                <form action="{{ route('patient.update', $patient) }}" method="POST" enctype="multipart/form-data" class="appoinment_form">
 
                     @csrf
-
+                    @method('PUT')
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input class="form-control" type="number" id="nik" name="nik" value="{{ old('nik') }}"
-                                    @if ($errors->any()) placeholder="Nik" @endif required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-id-card"></i>Nik</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}"
-                                    @if ($errors->any()) placeholder="Nama" @endif required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-user"></i>Nama</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <select class="form-control" name="gender" id="gender">
-                                    <option value=""></option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                                <label for="gender"><i class="fa fa-user-friends"></i>Jenis Kelamin</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input class="form-control" type="number" id="phone" name="phone"
-                                    value="{{ old('phone') }}" @if ($errors->any()) placeholder="Nomor HP" @endif
-                                required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-phone"></i>Nomor HP</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input class="form-control" type="text" id="birth_place" name="birth_place"
-                                    value="{{ old('birth_place') }}" @if ($errors->any()) placeholder="Tempat Lahir"
+                                <input class="form-control @error('nik') is-invalid @else is-valid @enderror" type="number" id="nik" name="nik" value="{{ $patient->nik ?? old('nik') }}" @if ($errors->any()) placeholder="{{ $patient->nik ?? old('nik') }}"
                                 @endif required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-map-marker-alt"></i>Tempat Lahir</label>
-                                @endif
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input class="form-control @error('name') is-invalid @else is-valid @enderror" type="text" id="name" name="name" value="{{ $patient->name ?? old('name') }}" @if ($errors->any()) placeholder="{{ $patient->name ?? old('name') }}"
+                                @endif required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <select class="form-control @error('gender') is-invalid @else is-valid @enderror" name="gender" id="gender">
+                                    <option value=""></option>
+                                    <option value="L" {{ $patient->gender == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="P" {{ $patient->gender == 'P' ? 'selected' : '' }}>Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input class="form-control @error('phone') is-invalid @else is-valid @enderror" type="number" id="phone" name="phone" value="{{ $patient->phone ?? old('phone') }}" @if ($errors->any()) placeholder="{{ $patient->phone ?? old('phone') }}"
+                                @endif required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input class="form-control @error('birth_place') is-invalid @else is-valid @enderror" type="text" id="birth_place" name="birth_place"
+                                    value="{{ $patient->birth_place ?? old('birth_place') }}" @if ($errors->any()) placeholder="{{ $patient->birth_place ?? old('birth_place') }}"
+                                    @endif required />
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -147,72 +133,25 @@
                                         <i class="fa fa-calendar-alt"></i>
                                     </div>
                                 </div>
-                                @if (!$errors->has('birth_date'))
+                                @if ($errors->has('birth_date'))
                                 <div class="text_div">
                                     Tanggal Lahir
                                 </div>
                                 @endif
 
-                                <input type="text" name="birth_date" class="form-control datetimepicker-input"
+                                <input type="text" name="birth_date" value="{{ $patient->birth_date ?? old('birth_date') }}" class="form-control @error('birth_date') is-invalid @else is-valid @enderror datetimepicker-input"
                                     data-target="#datetimepicker_ttl" data-toggle="datetimepicker" @error('birth_date')
                                     placeholder="Tanggal Lahir" @enderror required />
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="form-group input-group date" id="datetimepicker_rapid_test"
-                                data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker_rapid_test"
-                                    data-toggle="datetimepicker">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-calendar-alt"></i>
-                                    </div>
-                                </div>
-                                @if (!$errors->has('start_date'))
-                                <div class="text_div">
-                                    Tanggal Rapid Test
-                                </div>
-                                @endif
-                                <input type="text" name="start_date" class="form-control datetimepicker-input"
-                                    data-target="#datetimepicker_rapid_test" data-toggle="datetimepicker"
-                                    @error('start_date') placeholder="Tanggal Rapid Test" @enderror required />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group input-group date" id="datetimepicker4" data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker4"
-                                    data-toggle="datetimepicker">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-clock"></i>
-                                    </div>
-                                </div>
-                                @if (!$errors->has('start_time'))
-                                <div class="text_div">
-                                    Jam Rapid Test
-                                </div>
-                                @endif
-                                <input type="text" name="start_time" class="form-control datetimepicker-input"
-                                    data-target="#datetimepicker4" data-toggle="datetimepicker" @error('start_time')
-                                    placeholder="Jam Rapid Test" @enderror required />
-                            </div>
-                        </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <textarea name="address" id="address" cols="30" rows="10" class="form-control"
-                                    required>{{ old('address') }}</textarea>
-                                @if (!$errors->any())
-                                <label><i class="fa fa-home"></i>Alamat</label>
-                                @endif
+                                <textarea name="address" id="address" cols="30" rows="10" class="form-control @error('address') is-invalid @else is-valid @enderror"
+                                    required>{{ $patient->address ?? old('address') }}</textarea>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group checkbox_field">
-                                <u>
-                                    <b>
-                                        <a href="{{ route('patient.index') }}" style="color: #58547e">
-                                            Sudah pernah mendaftar sebelumnya?
-                                        </a>
-                                    </b>
-                                </u>
                                 <div>
                                     <button type="submit" class="btn btn-primary">
                                         Submit

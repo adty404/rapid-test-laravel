@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Cek Data Pendaftaran')
+@section('title', 'Sukses Mendaftar')
 
 @push('header')
 @include('includes.front.header.header-check-patient-register')

@@ -62,100 +62,26 @@
                 </div>
                 @endif
 
-                @isset($data)
+
+                @if (session('data'))
                 <div class="alert alert-danger" style="margin-top: 20px">
                     <h5>
                         <i class="fa fa-exclamation-triangle"></i> Error !!
                     </h5>
                     <ul>
-                        <li>Jadwal tidak tersedia pada <b>{{ $data->start_date }} - {{ $data->end_date }}</b></li>
+                        <li>Jadwal tidak tersedia pada <b>{{ session('data')->start_date }} - {{ session('data')->end_date }}</li>
                     </ul>
                 </div>
-                @endisset
-
-
-                {{-- @if (session('data'))
-                <div class="alert alert-danger" style="margin-top: 20px">
-                    <h5>
-                        <i class="fa fa-exclamation-triangle"></i> Error !!
-                    </h5>
-                    <ul>
-                        <li>Jadwal tidak tersedia pada <b>{{ session('data')->start_date }} - {{
-                                session('data')->end_date }}</li>
-                    </ul>
-                </div>
-                @endif --}}
-                <form action="{{ route('patient-register.store') }}" method="POST" class="appoinment_form">
+                @endif
+                <form action="{{ route('patient.register.store') }}" method="POST" class="appoinment_form">
 
                     @csrf
 
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input class="form-control" type="number" id="nik" name="nik" value="{{ old('nik') }}"
-                                    @if ($errors->any()) placeholder="Nik" @endif required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-id-card"></i>Nik</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}"
-                                    @if ($errors->any()) placeholder="Nama" @endif required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-user"></i>Nama</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <select class="form-control" name="gender" id="gender">
-                                    <option value=""></option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                                <label for="gender"><i class="fa fa-user-friends"></i>Jenis Kelamin</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input class="form-control" type="number" id="phone" name="phone"
-                                    value="{{ old('phone') }}" @if ($errors->any()) placeholder="Nomor HP" @endif
-                                required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-phone"></i>Nomor HP</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input class="form-control" type="text" id="birth_place" name="birth_place"
-                                    value="{{ old('birth_place') }}" @if ($errors->any()) placeholder="Tempat Lahir"
-                                @endif required />
-                                @if (!$errors->any())
-                                <label><i class="fa fa-map-marker-alt"></i>Tempat Lahir</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group input-group date" id="datetimepicker_ttl"
-                                data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker_ttl"
-                                    data-toggle="datetimepicker">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-calendar-alt"></i>
-                                    </div>
-                                </div>
-                                @if (!$errors->has('birth_date'))
-                                <div class="text_div">
-                                    Tanggal Lahir
-                                </div>
-                                @endif
-
-                                <input type="text" name="birth_date" class="form-control datetimepicker-input"
-                                    data-target="#datetimepicker_ttl" data-toggle="datetimepicker" @error('birth_date')
-                                    placeholder="Tanggal Lahir" @enderror required />
+                                <input class="form-control" type="number" id="nik" name="nik"
+                                    value="{{ $patient->nik ?? old('nik') }}" required readonly />
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -196,32 +122,9 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <div class="form-group">
-                                <textarea name="address" id="address" cols="30" rows="10" class="form-control"
-                                    required>{{ old('address') }}</textarea>
-                                @if (!$errors->any())
-                                <label><i class="fa fa-home"></i>Alamat</label>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group checkbox_field">
-                                <u>
-                                    <b>
-                                        <a href="{{ route('patient.index') }}" style="color: #58547e">
-                                            Sudah pernah mendaftar sebelumnya?
-                                        </a>
-                                    </b>
-                                </u>
-                                <div>
-                                    <button type="submit" class="btn btn-primary">
-                                        Submit
-                                    </button>
-                                    <button type="reset" class="btn btn-warning">
-                                        Reset
-                                    </button>
-                                </div>
-                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </form>

@@ -1,19 +1,31 @@
 @extends('layouts.front')
 
-@section('title', 'Cek Data Pendaftaran')
+@section('title', 'Data Pasien')
 
 @push('header')
-@include('includes.front.header.header-check-patient-register')
+@include('includes.front.header.header-patient')
 @endpush
 
 @section('content')
+@include('sweetalert::alert')
 <!--=============== Start braeadcrum Area =================-->
 <section class="faq_breadcrumb_area">
     <img class="overlay_bg" src="assets/images/about/worldmap2.png" alt="" />
     <div class="container">
         <div class="breadcrumb_content text-center">
             <h6>Klinik Mutiara</h6>
-            <h2>Data Pendaftaran Rapid Test</h2>
+            <h2>Data Pasien</h2>
+
+            @if ($errors->any())
+                <div class="alert alert-danger" style="margin-top: 20px">
+                    <h5>
+                        <i class="fa fa-exclamation-triangle"></i> Error !!
+                    </h5>
+                    @foreach ($errors->all() as $error)
+                       <p>{{ $error }}</p>
+                        @endforeach
+                </div>
+            @endif
 
             @if (session('data'))
                 <div class="alert alert-danger" style="margin-top: 20px">
@@ -24,10 +36,10 @@
                 </div>
             @endif
 
-            <form action="{{ route('check-patient-register.check') }}" method="POST" class="faq_search">
+            <form action="{{ route('patient.check') }}" method="POST" class="faq_search">
                 @csrf
                 <div class="control-with-icon">
-                    <input type="text" name="register_number" class="form-control" placeholder="Silahkan masukkan nomor registrasi anda ..." required="" />
+                    <input type="number" name="nik" class="form-control" placeholder="Silahkan masukkan NIK anda ..." required="" />
                     <span class="control-icon">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </span>

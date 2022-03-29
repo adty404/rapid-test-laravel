@@ -4,11 +4,13 @@ namespace App\Http\Controllers\front;
 
 use App\Action\CreatePatientAction;
 use App\Action\CreatePatientRegisterAction;
+use App\Action\IsPatientExistAction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PatientRegister;
 use App\Http\Requests\Patient\PatientRequest;
 use App\Http\Requests\PatientRegister\PatientRegisterRequest;
+use App\Models\Patient;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientRegisterController extends Controller
@@ -41,6 +43,14 @@ class PatientRegisterController extends Controller
      */
     public function store(PatientRequest $patientRequest, PatientRegisterRequest $patientRegisterRequest)
     {
+        //is patient exist?
+        $patient = new Patient();
+        $is_patient_exist = $patient->is_patient_exist($patientRequest);
+
+        if ($is_patient_exist) {
+            return redirect()->route('patient.show', $is_patient_exist->nik);
+        }
+
         //create new patient
         $actionPatient = new CreatePatientAction();
         $actionPatient->execute($patientRequest);
