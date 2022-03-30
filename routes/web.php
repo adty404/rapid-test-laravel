@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\front\PatientController;
 use App\Http\Controllers\front\PatientRegisterCheckController;
 use App\Http\Controllers\front\PatientRegisterController;
@@ -17,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 Route::redirect('/', '/patient-register');
 
 //Patient
@@ -39,3 +37,8 @@ Route::post('check-patient-register', [PatientRegisterCheckController::class, 'c
     ->name('check-patient-register.check');
 Route::get('check-patient-register/{registerNumber}', [PatientRegisterCheckController::class, 'show'])
     ->name('check-patient-register.show');
+
+Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
+    //Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});

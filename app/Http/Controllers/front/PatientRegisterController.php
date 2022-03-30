@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\front;
 
-use App\Action\CreatePatientAction;
-use App\Action\CreatePatientRegisterAction;
+use App\Actions\CreatePatientAction;
+use App\Actions\CreatePatientRegisterAction;
 use App\Action\IsPatientExistAction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
