@@ -160,7 +160,6 @@
   function datetime_picker() {
     if ($("#datetimepicker_ttl").length > 0) {
       $("#datetimepicker_ttl").datetimepicker({
-        maxDate: new Date,
         locale: "en",
         format: "YYYY-MM-DD",
       });

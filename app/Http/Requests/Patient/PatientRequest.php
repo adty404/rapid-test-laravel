@@ -29,7 +29,7 @@ class PatientRequest extends FormRequest
             'gender' => ['required', 'in:L,P'],
             'phone' => ['required', 'numeric', 'digits_between:12,13', 'unique:patients,phone'],
             'birth_place' => ['required'],
-            'birth_date' => ['required'],
+            'birth_date' => ['required', 'before:today'],
             'address' => ['required'],
         ];
     }
@@ -49,6 +49,7 @@ class PatientRequest extends FormRequest
             'phone.unique' => 'Nomor HP sudah terdaftar',
             'birth_place.required' => 'Tempat lahir harus diisi',
             'birth_date.required' => 'Tanggal lahir harus diisi',
+            'birth_date.before' => 'Tanggal lahir harus kurang dari tanggal hari ini',
             'address.required' => 'Alamat harus diisi',
         ];
     }

@@ -134,9 +134,8 @@ Ubah Data Pasien
     $(function () {
       //Date picker
       $('#birth_date').datetimepicker({
-        endDate: "today",
-        locale: "en",
-        format: "YYYY-MM-DD",
+          locale: "en",
+          format: "YYYY-MM-DD",
       });
 
       //Timepicker
