@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\PatientRequest;
+use App\Http\Requests\Patient\PatientUpdateRequest;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -90,9 +91,9 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Patient $patient)
     {
-        //
+        return view('pages.admin.patient.edit')->with('patient', $patient);
     }
 
     /**
@@ -102,9 +103,12 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PatientUpdateRequest $request, Patient $patient)
     {
-        //
+        $patient->update($request->all());
+
+        Alert::success('Success', 'Berhasil mengubah data pasien');
+        return redirect()->route('admin.patient.index');
     }
 
     /**
@@ -113,8 +117,11 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+
+        Alert::success('Success', 'Berhasil menghapus data pasien');
+        return redirect()->route('admin.patient.index');
     }
 }
