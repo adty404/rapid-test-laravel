@@ -25,11 +25,28 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}"
+                    <a href="{{ route('admin.dashboard') }}"
                         class="nav-link {{ (request()->is('dashboard*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.patient.index') }}"
+                        class="nav-link {{ (request()->is('admin/patient*')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-injured"></i>
+                        <p>
+                            Data Pasien
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ (request()->is('farm*')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            Data Pendaftaran
                         </p>
                     </a>
                 </li>

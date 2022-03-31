@@ -51,7 +51,7 @@ Dashboard
                         <div class="inner">
                             <h3 style="white-space: normal;">Name</h3>
 
-                            <p>Peternakan</p>
+                            <p>AAAAAA</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-store"></i>
@@ -81,7 +81,7 @@ Dashboard
                         <div class="inner">
                             <h3 style="white-space: normal;">Name</h3>
 
-                            <p>Ternak</p>
+                            <p>aaaaa</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-horse"></i>
