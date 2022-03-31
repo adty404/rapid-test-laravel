@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Patient\PatientRequest;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
 class PatientController extends Controller
@@ -18,22 +20,22 @@ class PatientController extends Controller
     {
         $user = auth()->user();
 
-        if($user['role'] == 'admin'){
+        if ($user['role'] == 'admin') {
             $query = Patient::query();
         }
 
         if (request()->ajax()) {
 
             return DataTables::of($query)
-            ->addColumn('aksi', function($patient){
-                $patient = [
-                    'id' => $patient->id
-                ];
-                return view('pages.admin.patient.action')->with('patient', $patient);
-            })
-            ->addIndexColumn()
-            ->rawColumns(['aksi'])
-            ->make(true);
+                ->addColumn('aksi', function ($patient) {
+                    $patient = [
+                        'id' => $patient->id
+                    ];
+                    return view('pages.admin.patient.action')->with('patient', $patient);
+                })
+                ->addIndexColumn()
+                ->rawColumns(['aksi'])
+                ->make(true);
         }
         return view('pages.admin.patient.index');
     }
@@ -45,7 +47,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.patient.create');
     }
 
     /**
@@ -54,9 +56,21 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
-        //
+        $this->validate($request,
+            [
+                'nik' => 'required|unique:patients,nik'
+            ],
+            [
+                'nik.required' => 'NIK tidak boleh kosong',
+                'nik.unique' => 'NIK sudah terdaftar'
+            ]
+        );
+        $patient = Patient::create($request->all());
+
+        Alert::success('Success', 'Berhasil menambahkan data pasien');
+        return redirect()->route('admin.patient.index');
     }
 
     /**

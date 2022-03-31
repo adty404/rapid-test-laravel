@@ -33,7 +33,7 @@ Pasien
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="#">
+                            <a href="{{ route('admin.patient.create') }}">
                                 <button type="button" class="btn btn-primary" style="float: right;">
                                     <i class="fa fa-plus"></i>
                                     Tambah Data
