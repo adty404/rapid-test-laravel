@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Actions\Admin\CreatePatientExistRegisterAction;
+use App\Actions\Admin\UpdatePatientRegisterAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientRegister\Admin\PatientExistRegisterRequest;
+use App\Http\Requests\PatientRegister\Admin\PatientRegisterUpdateRequest;
 use App\Models\Patient;
 use App\Models\PatientRegister;
 use Carbon\Carbon;
@@ -47,8 +49,11 @@ class PatientRegisterController extends Controller
                 ->addColumn('created_at', function($patientRegister){
                     return Carbon::parse($patientRegister->created_at)->format('d M Y, H:i');
                 })
+                ->addColumn('updated_at', function($patientRegister){
+                    return Carbon::parse($patientRegister->updated_at)->format('d M Y, H:i');
+                })
                 ->addIndexColumn()
-                ->rawColumns(['aksi', 'nik', 'start_date', 'end_date', 'created_at'])
+                ->rawColumns(['aksi', 'nik', 'start_date', 'end_date', 'created_at', 'updated_at'])
                 ->make(true);
         }
         return view('pages.admin.patient-register.index');
@@ -96,9 +101,12 @@ class PatientRegisterController extends Controller
      * @param  \App\Models\PatientRegister  $patientRegister
      * @return \Illuminate\Http\Response
      */
-    public function edit(PatientRegister $patientRegister)
+    public function edit(PatientRegister $register_patient)
     {
-        //
+        return view('pages.admin.patient-register.edit', [
+            'patient' => Patient::all('id', 'nik'),
+            'register_patient' => $register_patient,
+        ]);
     }
 
     /**
@@ -108,9 +116,11 @@ class PatientRegisterController extends Controller
      * @param  \App\Models\PatientRegister  $patientRegister
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PatientRegister $patientRegister)
+    public function update(PatientRegisterUpdateRequest $request, PatientRegister $register_patient)
     {
-        //
+        //update patient register data
+        $actionPatientRegisterUpdate = new UpdatePatientRegisterAction;
+        return $actionPatientRegisterUpdate->execute($request, $register_patient);
     }
 
     /**

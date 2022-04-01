@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Tambah Data Pendaftaran
+Ubah Data Pasien
 @endsection
 
 @push('prepend-style')
@@ -15,12 +15,12 @@ Tambah Data Pendaftaran
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Pendaftaran Pasien</h1>
+                    <h1 class="m-0">Pasien</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Pendaftaran Pasien</a></li>
-                        <li class="breadcrumb-item active">Tambah Data</li>
+                        <li class="breadcrumb-item"><a href="#">Pasien</a></li>
+                        <li class="breadcrumb-item active">Ubah Data</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -35,30 +35,35 @@ Tambah Data Pendaftaran
                 <!-- left column -->
                 <div class="col-md-12">
                     <!-- general form elements -->
-                    <div class="card card-primary">
+                    <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title">Tambah Data</h3>
+                            <h3 class="card-title">Ubah Data</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{ route('admin.register-patient.store') }}"
+                        <form method="POST" action="{{ route('admin.register-patient.update', $register_patient) }}"
                             enctype="multipart/form-data">
                             @csrf
+                            @method("PUT")
                             <div class="card-body">
-                                @include('pages.admin.patient-register.errors.error-create')
+                                @include('pages.admin.patient-register.errors.error-edit')
                                 <div class="form-group">
                                     <label for="patient_id">Nik</label>
                                     <select name="patient_id" id="patient_id" class="form-control select2">
                                         @foreach ($patient as $p)
-                                        <option value="{{ $p->id }}">{{ $p->nik }}</option>
+                                        <option value="{{ $p->id }}" @if ($p->id === $register_patient->patient_id)
+                                            selected
+                                            @endif
+                                            >{{ $p->nik }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="start_date">Tanggal</label>
                                     <div class="input-group date" id="start_date" data-target-input="nearest">
-                                        <input type="text" name="start_date" class="form-control datetimepicker-input"
-                                            data-target="#start_date" />
+                                        <input type="text" name="start_date"
+                                            value="{{ \Carbon\Carbon::parse($register_patient->start_date)->format('Y-m-d') ?? \Carbon\Carbon::parse(old('start_date'))->format('Y-m-d') }}"
+                                            class="form-control datetimepicker-input" data-target="#start_date" />
                                         <div class="input-group-append" data-target="#start_date"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -66,11 +71,11 @@ Tambah Data Pendaftaran
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="start_time">Waktu</label>
-
+                                    <label for="start_time">Waktu Mulai</label>
                                     <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                        <input type="text" name="start_time" class="form-control datetimepicker-input"
-                                            data-target="#timepicker" />
+                                        <input type="text" name="start_time"
+                                            value="{{ \Carbon\Carbon::parse($register_patient->start_date)->format('H:i') ?? \Carbon\Carbon::parse(old('start_time'))->format('H:i') }}"
+                                            class="form-control datetimepicker-input" data-target="#timepicker" />
                                         <div class="input-group-append" data-target="#timepicker"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -81,7 +86,7 @@ Tambah Data Pendaftaran
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Kirim</button>
+                                <button type="submit" class="btn btn-warning">Kirim</button>
                             </div>
                         </form>
                     </div>
@@ -109,9 +114,8 @@ Tambah Data Pendaftaran
     $(function () {
       //Date picker
       $('#start_date').datetimepicker({
-        minDate: new Date,
-        locale: "en",
-        format: "YYYY-MM-DD",
+          locale: "en",
+          format: "YYYY-MM-DD",
       });
 
       //Timepicker

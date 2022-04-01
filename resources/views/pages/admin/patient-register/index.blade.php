@@ -52,6 +52,7 @@ Data Pendaftaran Pasien
                                         <th>Tanggal</th>
                                         <th>Jam</th>
                                         <th>Tanggal Pendaftaran</th>
+                                        <th>Terakhir Diubah</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -113,7 +114,7 @@ Data Pendaftaran Pasien
         scrollX: true,
         columnDefs: [
                 {
-                    "targets": [0, 1, 2, 3, 4, 5], // your case first column
+                    "targets": [0, 1, 2, 3, 4, 5, 6, 7], // your case first column
                     "className": "text-center",
                 },
             ],
@@ -145,6 +146,10 @@ Data Pendaftaran Pasien
             {
                 data: 'created_at',
                 name: 'created_at'
+            },
+            {
+                data: 'updated_at',
+                name: 'updated_at'
             },
             {
                 data: 'aksi',
