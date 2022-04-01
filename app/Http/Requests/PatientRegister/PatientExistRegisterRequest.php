@@ -25,7 +25,9 @@ class PatientExistRegisterRequest extends FormRequest
         return [
             'nik.required' => 'NIK harus diisi',
             'nik.numeric' => 'NIK harus berupa angka',
-            'nik.digits' => 'NIK harus berjumlah 16 digit'
+            'nik.digits' => 'NIK harus berjumlah 16 digit',
+            'start_date.required' => 'Tanggal harus diisi',
+            'start_time.required' => 'Waktu harus diisi'
         ];
     }
 }
