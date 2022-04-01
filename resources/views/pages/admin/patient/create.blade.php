@@ -41,17 +41,9 @@ Tambah Data Pasien
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
                         <form method="POST" action="{{ route('admin.patient.store') }}" enctype="multipart/form-data">
                             @csrf
+                            @include('pages.admin.patient.errors.error-create')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nik">Nik</label>

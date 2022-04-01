@@ -41,18 +41,10 @@ Ubah Data Pasien
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
                         <form method="POST" action="{{ route('admin.patient.update', $patient) }}"
                             enctype="multipart/form-data">
                             @csrf
+                            @include('pages.admin.patient.errors.error-edit')
                             @method("PUT")
                             <div class="card-body">
                                 <div class="form-group">
