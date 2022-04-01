@@ -31,26 +31,26 @@ class PatientRegisterController extends Controller
         if (request()->ajax()) {
 
             return DataTables::of($query)
-                ->addColumn('aksi', function ($patientRegister) {
-                    $patientRegister = [
-                        'id' => $patientRegister->id
+                ->addColumn('aksi', function ($register_patient) {
+                    $register_patient = [
+                        'id' => $register_patient->id
                     ];
-                    return view('pages.admin.patient-register.action')->with('patientRegister', $patientRegister);
+                    return view('pages.admin.patient-register.action')->with('register_patient', $register_patient);
                 })
-                ->addColumn('nik', function($patientRegister){
-                    return $patientRegister->patient['nik'];
+                ->addColumn('nik', function($register_patient){
+                    return $register_patient->patient['nik'];
                 })
-                ->addColumn('start_date', function($patientRegister){
-                    return Carbon::parse($patientRegister->start_date)->format('d M Y');
+                ->addColumn('start_date', function($register_patient){
+                    return Carbon::parse($register_patient->start_date)->format('d M Y');
                 })
-                ->addColumn('end_date', function($patientRegister){
-                    return Carbon::parse($patientRegister->start_date)->format('H:i') . ' - ' . Carbon::parse($patientRegister->end_date)->format('H:i');
+                ->addColumn('end_date', function($register_patient){
+                    return Carbon::parse($register_patient->start_date)->format('H:i') . ' - ' . Carbon::parse($register_patient->end_date)->format('H:i');
                 })
-                ->addColumn('created_at', function($patientRegister){
-                    return Carbon::parse($patientRegister->created_at)->format('d M Y, H:i');
+                ->addColumn('created_at', function($register_patient){
+                    return Carbon::parse($register_patient->created_at)->format('d M Y, H:i');
                 })
-                ->addColumn('updated_at', function($patientRegister){
-                    return Carbon::parse($patientRegister->updated_at)->format('d M Y, H:i');
+                ->addColumn('updated_at', function($register_patient){
+                    return Carbon::parse($register_patient->updated_at)->format('d M Y, H:i');
                 })
                 ->addIndexColumn()
                 ->rawColumns(['aksi', 'nik', 'start_date', 'end_date', 'created_at', 'updated_at'])

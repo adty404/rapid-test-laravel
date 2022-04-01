@@ -23,3 +23,21 @@
     </ul>
 </div>
 @endisset
+
+@isset($closed_hours)
+<div class="alert alert-danger" style="margin-top: 20px">
+    <h5>
+        <i class="fa fa-exclamation-triangle"></i> Error !!
+    </h5>
+    <ul>
+        <li>Tidak dapat mendaftar pada jam-jam berikut:
+            <b>
+                @foreach ($closed_hours as $closed_hour)
+                {{ $loop->first ? '' : ', ' }}
+                {{ $closed_hour }}
+                @endforeach
+            </b>
+        </li>
+    </ul>
+</div>
+@endisset

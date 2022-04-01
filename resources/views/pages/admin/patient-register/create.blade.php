@@ -57,7 +57,7 @@ Tambah Data Pendaftaran
                                 <div class="form-group">
                                     <label for="start_date">Tanggal</label>
                                     <div class="input-group date" id="start_date" data-target-input="nearest">
-                                        <input type="text" name="start_date" class="form-control datetimepicker-input"
+                                        <input type="text" name="start_date" value="{{ old('start_date') }}" class="form-control datetimepicker-input"
                                             data-target="#start_date" />
                                         <div class="input-group-append" data-target="#start_date"
                                             data-toggle="datetimepicker">
@@ -69,7 +69,7 @@ Tambah Data Pendaftaran
                                     <label for="start_time">Waktu</label>
 
                                     <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                        <input type="text" name="start_time" class="form-control datetimepicker-input"
+                                        <input type="text" name="start_time" value="{{ old('start_time') }}" class="form-control datetimepicker-input"
                                             data-target="#timepicker" />
                                         <div class="input-group-append" data-target="#timepicker"
                                             data-toggle="datetimepicker">

@@ -13,6 +13,7 @@ class CreatePatientExistRegisterAction
 
     public function execute($patientRegisterRequest)
     {
+        $patientRegister = new PatientRegister;
         $data_patient_register = $patientRegisterRequest->all();
 
         //define some patient register column
@@ -25,8 +26,17 @@ class CreatePatientExistRegisterAction
         $data_patient_register['start_date'] = $start_date->toDateTimeString();
         $data_patient_register['end_date']   = $start_date->addMinutes(25)->toDateTimeString();
 
+        // close hours
+        $closed_hours = $patientRegister->closed_hours(Carbon::parse($data_patient_register['start_time'])->format('H'));
+
+        if ($closed_hours) {
+            return view('pages.admin.patient-register.create', [
+                'closed_hours' => $closed_hours,
+                'patient' => Patient::all('id', 'nik'),
+            ]);
+        }
+
         //is date exist?
-        $patientRegister = new PatientRegister;
         $is_date_exist = $patientRegister->is_date_exist($data_patient_register);
 
         if ($is_date_exist) {
