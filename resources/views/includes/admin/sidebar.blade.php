@@ -43,7 +43,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ (request()->is('farm*')) ? 'active' : '' }}">
+                    <a href="{{ route('admin.register-patient.index') }}"
+                        class="nav-link {{ (request()->is('admin/register-patient*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Data Pendaftaran

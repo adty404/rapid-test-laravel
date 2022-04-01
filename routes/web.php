@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\PatientController as AdminPatientController;
+use App\Http\Controllers\admin\PatientRegisterController as AdminPatientRegisterController;
 use App\Http\Controllers\front\PatientController;
 use App\Http\Controllers\front\PatientRegisterCheckController;
 use App\Http\Controllers\front\PatientRegisterController;
@@ -45,6 +46,9 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         //Patient
-        Route::resource('patient', AdminPatientController::class);
+        Route::resources([
+            'patient' => AdminPatientController::class,
+            'register-patient' => AdminPatientRegisterController::class,
+        ]);
     });
 });
