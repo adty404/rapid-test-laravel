@@ -43,8 +43,8 @@ Tambah Data Pasien
                         <!-- form start -->
                         <form method="POST" action="{{ route('admin.patient.store') }}" enctype="multipart/form-data">
                             @csrf
-                            @include('pages.admin.patient.errors.error-create')
                             <div class="card-body">
+                                @include('pages.admin.patient.errors.error-create')
                                 <div class="form-group">
                                     <label for="nik">Nik</label>
                                     <input type="number" name="nik" class="form-control" id="nik" placeholder="NIK"
@@ -85,7 +85,8 @@ Tambah Data Pasien
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Alamat</label>
-                                    <textarea name="address" class="form-control" id="address" cols="30" rows="10">{{ old('address') }}</textarea>
+                                    <textarea name="address" class="form-control" id="address" cols="30"
+                                        rows="10">{{ old('address') }}</textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->

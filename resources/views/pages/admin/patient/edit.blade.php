@@ -44,9 +44,9 @@ Ubah Data Pasien
                         <form method="POST" action="{{ route('admin.patient.update', $patient) }}"
                             enctype="multipart/form-data">
                             @csrf
-                            @include('pages.admin.patient.errors.error-edit')
                             @method("PUT")
                             <div class="card-body">
+                                @include('pages.admin.patient.errors.error-edit')
                                 <div class="form-group">
                                     <label for="nik">NIK</label>
                                     <input type="number" name="nik" class="form-control" id="nik" placeholder="NIK"

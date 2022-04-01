@@ -44,54 +44,55 @@ Tambah Data Pendaftaran
                         <form method="POST" action="{{ route('admin.register-patient.store') }}"
                             enctype="multipart/form-data">
                             @csrf
-                            @include('pages.admin.patient-register.errors.error-create')
-                            <div class="form-group">
-                                <label for="patient_id">Nik</label>
-                                <select name="patient_id" id="patient_id" class="form-control select2">
-                                    @foreach ($patient as $p)
-                                    <option value="{{ $p->id }}">{{ $p->nik }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="start_date">Tanggal</label>
-                                <div class="input-group date" id="start_date" data-target-input="nearest">
-                                    <input type="text" name="start_date" class="form-control datetimepicker-input"
-                                        data-target="#start_date" />
-                                    <div class="input-group-append" data-target="#start_date"
-                                        data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            <div class="card-body">
+                                @include('pages.admin.patient-register.errors.error-create')
+                                <div class="form-group">
+                                    <label for="patient_id">Nik</label>
+                                    <select name="patient_id" id="patient_id" class="form-control select2">
+                                        @foreach ($patient as $p)
+                                        <option value="{{ $p->id }}">{{ $p->nik }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="start_date">Tanggal</label>
+                                    <div class="input-group date" id="start_date" data-target-input="nearest">
+                                        <input type="text" name="start_date" class="form-control datetimepicker-input"
+                                            data-target="#start_date" />
+                                        <div class="input-group-append" data-target="#start_date"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="start_time">Waktu</label>
+
+                                    <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                        <input type="text" name="start_time" class="form-control datetimepicker-input"
+                                            data-target="#timepicker" />
+                                        <div class="input-group-append" data-target="#timepicker"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="start_time">Waktu</label>
+                            <!-- /.card-body -->
 
-                                <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                    <input type="text" name="start_time" class="form-control datetimepicker-input"
-                                        data-target="#timepicker" />
-                                    <div class="input-group-append" data-target="#timepicker"
-                                        data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                    </div>
-                                </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Kirim</button>
                             </div>
+                        </form>
                     </div>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Kirim</button>
-                    </div>
-                    </form>
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
+                <!--/.col (left) -->
             </div>
-            <!--/.col (left) -->
-        </div>
-        <!-- /.row -->
-</div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
 @endsection
 
