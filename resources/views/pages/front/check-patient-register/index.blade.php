@@ -15,14 +15,7 @@
             <h6>Klinik Mutiara</h6>
             <h2>Data Pendaftaran Rapid Test</h2>
 
-            @if (session('data'))
-                <div class="alert alert-danger" style="margin-top: 20px">
-                    <h5>
-                        <i class="fa fa-exclamation-triangle"></i> Error !!
-                    </h5>
-                    <p>{{ session('data') }}</p>
-                </div>
-            @endif
+            @include('pages.front.check-patient-register.errors.error-index')
 
             <form action="{{ route('check-patient-register.check') }}" method="POST" class="faq_search">
                 @csrf
