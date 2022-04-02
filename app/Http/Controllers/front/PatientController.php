@@ -56,11 +56,11 @@ class PatientController extends Controller
     {
         $patient = Patient::where('nik', $patient)->first();
 
-        $patientRegister = PatientRegister::where('patient_id', $patient->id)->latest('id')->first();
-
         if (!$patient) {
             return redirect()->route('patient.index')->with('data', 'NIK tidak ditemukan!');
         }
+
+        $patientRegister = PatientRegister::where('patient_id', $patient->id)->latest('id')->first();
 
         return view('pages.front.patient.show', [
             'patient' => $patient,
