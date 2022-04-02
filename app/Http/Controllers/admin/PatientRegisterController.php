@@ -129,8 +129,10 @@ class PatientRegisterController extends Controller
      * @param  \App\Models\PatientRegister  $patientRegister
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PatientRegister $patientRegister)
+    public function destroy(PatientRegister $register_patient)
     {
-        //
+        $register_patient->delete();
+
+        return redirect()->route('admin.register-patient.index');
     }
 }
