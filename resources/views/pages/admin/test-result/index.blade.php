@@ -51,6 +51,7 @@ Hasil Rapid Test
                                         <th>Nik</th>
                                         <th>Nama</th>
                                         <th>Hasil</th>
+                                        <th>Terakhir diubah</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -112,7 +113,7 @@ Hasil Rapid Test
         scrollX: true,
         columnDefs: [
                 {
-                    "targets": [0, 1, 2, 3, 4, 5], // your case first column
+                    "targets": [0, 1, 2, 3, 4, 5, 6], // your case first column
                     "className": "text-center",
                 },
             ],
@@ -140,6 +141,10 @@ Hasil Rapid Test
             {
                 data: 'result',
                 name: 'result',
+            },
+            {
+                data: 'updated_at',
+                name: 'updated_at',
             },
             {
                 data: 'aksi',

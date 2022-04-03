@@ -4,8 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TestResult\CreateTestResultRequest;
+use App\Http\Requests\TestResult\UpdateTestResultRequest;
 use App\Models\PatientRegister;
 use App\Models\TestResult;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
@@ -44,8 +46,11 @@ class TestResultController extends Controller
                 ->addColumn('name', function($test_result){
                     return $test_result->patientRegister->patient['name'];
                 })
+                ->addColumn('updated_at', function($test_result){
+                    return Carbon::parse($test_result->updated_at)->format('d M Y, H:i');
+                })
                 ->addIndexColumn()
-                ->rawColumns(['aksi', 'register_number', 'nik', 'name'])
+                ->rawColumns(['aksi', 'register_number', 'nik', 'name', 'updated_at'])
                 ->make(true);
         }
         return view('pages.admin.test-result.index');
@@ -110,9 +115,9 @@ class TestResultController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TestResult $test_result)
     {
-        //
+        return view('pages.admin.test-result.edit')->with('test_result', $test_result);
     }
 
     /**
@@ -122,9 +127,16 @@ class TestResultController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTestResultRequest $request, TestResult $test_result)
     {
-        //
+        $data = $request->validated();
+
+        $data['patient_register_id'] = $test_result->patient_register_id;
+
+        $test_result->update($data);
+
+        Alert::success('Success', 'Hasil test berhasil diubah');
+        return redirect()->route('admin.test-result.index');
     }
 
     /**
@@ -133,9 +145,12 @@ class TestResultController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TestResult $test_result)
     {
-        //
+        $test_result->delete();
+
+        Alert::success('Success', 'Hasil test berhasil dihapus');
+        return redirect()->route('admin.test-result.index');
     }
 
     public function export(CreateTestResultRequest $request)
