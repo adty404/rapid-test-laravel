@@ -51,6 +51,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.test-result.index') }}"
+                        class="nav-link {{ (request()->is('admin/test-result*')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-export"></i>
+                        <p>
+                            Hasil Rapid Test
+                        </p>
+                    </a>
+                </li>
             </ul>
             </li>
             </ul>

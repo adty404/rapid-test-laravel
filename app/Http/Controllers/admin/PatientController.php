@@ -34,8 +34,11 @@ class PatientController extends Controller
                     ];
                     return view('pages.admin.patient.action')->with('patient', $patient);
                 })
+                ->addColumn('gender', function($patient){
+                    return $patient['gender'] == 'L' ? 'Laki-laki' : 'Perempuan';
+                })
                 ->addIndexColumn()
-                ->rawColumns(['aksi'])
+                ->rawColumns(['aksi', 'gender'])
                 ->make(true);
         }
         return view('pages.admin.patient.index');
