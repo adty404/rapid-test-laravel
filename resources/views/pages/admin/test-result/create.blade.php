@@ -47,9 +47,12 @@ Tambah data Hasil Rapid Test
                             <div class="card-body">
                                 @include('pages.admin.test-result.errors.error-create')
                                 <div class="form-group">
-                                    <label for="regsiter_number">Nomor Pendaftaran</label>
-                                    <input type="text" name="register_number" class="form-control" id="regsiter_number" placeholder="Nomor Pendaftaran"
-                                        value="{{ old('regsiter_number') }}" required>
+                                    <label for="register_number">Nomor Pendaftaran</label>
+                                    <select name="register_number" id="register_number" class="form-control select2">
+                                        @foreach ($patient_register as $item)
+                                            <option value="{{ $item->register_number }}">{{ $item->register_number }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="result">Hasil</label>

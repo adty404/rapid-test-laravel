@@ -63,7 +63,9 @@ class TestResultController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.test-result.create');
+        return view('pages.admin.test-result.create', [
+            'patient_register' => PatientRegister::doesntHave('testResults')->get()
+        ]);
     }
 
     /**
