@@ -19,4 +19,9 @@ class TestResult extends Model
     {
         return $this->belongsTo(PatientRegister::class);
     }
+
+    public function testResultDetail()
+    {
+        return $this->hasOne(TestResultDetail::class);
+    }
 }

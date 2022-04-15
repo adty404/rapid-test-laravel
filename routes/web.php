@@ -54,5 +54,8 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
             //Test result
             'test-result' => AdminTestResultControler::class,
         ]);
+
+        //Test result
+        Route::get('test-result/{test_result}/export/', [AdminTestResultControler::class, 'export'])->name('test-result.export');
     });
 });

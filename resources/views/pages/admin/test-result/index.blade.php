@@ -51,6 +51,10 @@ Hasil Rapid Test
                                         <th>Nik</th>
                                         <th>Nama</th>
                                         <th>Hasil</th>
+                                        <th>Rujukan</th>
+                                        <th>Penanggung Jawab</th>
+                                        <th>Pemeriksa</th>
+                                        <th>Keterangan</th>
                                         <th>Terakhir diubah</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -141,6 +145,22 @@ Hasil Rapid Test
             {
                 data: 'result',
                 name: 'result',
+            },
+            {
+                data: 'rujukan',
+                name: 'rujukan',
+            },
+            {
+                data: 'penanggung_jawab',
+                name: 'penanggung_jawab',
+            },
+            {
+                data: 'pemeriksa',
+                name: 'pemeriksa',
+            },
+            {
+                data: 'keterangan',
+                name: 'keterangan',
             },
             {
                 data: 'updated_at',

@@ -27,6 +27,10 @@ class UpdateTestResultRequest extends FormRequest
         return [
             'register_number' => ['required', 'exists:patient_registers,register_number', 'unique:patient_registers,register_number,' . $this->test_result->patient_register_id],
             'result' => ['required', 'in:positif,negatif'],
+            'rujukan' => ['nullable'],
+            'penanggung_jawab' => ['required'],
+            'pemeriksa' => ['required'],
+            'keterangan' => ['nullable']
         ];
     }
 
@@ -38,6 +42,8 @@ class UpdateTestResultRequest extends FormRequest
             'register_number.unique' => 'Nomor Pendaftaran sudah terdaftar',
             'result.required' => 'Hasil Rapid Test harus diisi',
             'result.in' => 'Hasil Rapid Test harus positif atau negatif',
+            'penanggung_jawab.required' => 'Penanggung Jawab harus diisi',
+            'pemeriksa.required' => 'Pemeriksa harus diisi',
         ];
     }
 }

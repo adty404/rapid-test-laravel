@@ -26,6 +26,10 @@ class CreateTestResultRequest extends FormRequest
         return [
             'register_number' => ['required', 'exists:patient_registers,register_number'],
             'result' => ['required', 'in:positif,negatif'],
+            'rujukan' => ['nullable'],
+            'penanggung_jawab' => ['required'],
+            'pemeriksa' => ['required'],
+            'keterangan' => ['nullable']
         ];
     }
 
@@ -36,6 +40,8 @@ class CreateTestResultRequest extends FormRequest
             'register_number.exists' => 'Nomor Pendaftaran tidak ditemukan',
             'result.required' => 'Hasil Rapid Test harus diisi',
             'result.in' => 'Hasil Rapid Test harus positif atau negatif',
+            'penanggung_jawab.required' => 'Penanggung Jawab harus diisi',
+            'pemeriksa.required' => 'Pemeriksa harus diisi',
         ];
     }
 }

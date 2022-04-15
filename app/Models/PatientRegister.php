@@ -26,7 +26,7 @@ class PatientRegister extends Model
         'end_date',
     ];
 
-    public function testResults()
+    public function testResult()
     {
         return $this->hasOne(TestResult::class);
     }

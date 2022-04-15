@@ -59,6 +59,22 @@ Ubah data Hasil Rapid Test
                                         <option value="negatif" {{ $test_result->result === 'negatif' ? 'selected' : '' }}>Negatif</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="rujukan">Rujukan</label>
+                                    <input type="text" name="rujukan" id="rujukan" class="form-control" placeholder="Masukkan Rujukan" value="{{ $test_result->testResultDetail->rujukan ?? old('rujukan') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="penanggung_jawab">Penanggung Jawab</label>
+                                    <input type="text" name="penanggung_jawab" id="penanggung_jawab" class="form-control" placeholder="Masukkan Penanggung Jawab" value="{{ $test_result->testResultDetail->penanggung_jawab ?? old('penanggung_jawab') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pemeriksa">Pemeriksa</label>
+                                    <input type="text" name="pemeriksa" id="pemeriksa" class="form-control" placeholder="Masukkan pemeriksa" value="{{ $test_result->testResultDetail->pemeriksa ?? old('pemeriksa') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="keterangan">Keterangan</label>
+                                    <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan keterangan" value="{{ $test_result->testResultDetail->keterangan ?? old('keterangan') }}">
+                                </div>
                             </div>
                             <!-- /.card-body -->
 

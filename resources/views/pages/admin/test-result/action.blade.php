@@ -1,5 +1,6 @@
 <a href="{{ route('admin.test-result.edit', ['test_result' => $test_result['id']]) }}" class="btn btn-warning btn-sm" style="margin-top: 5px;">Ubah</a>
 <button href="{{ route('admin.test-result.destroy', ['test_result' => $test_result['id']]) }}" class="btn btn-danger btn-sm" id="delete" style="margin-top: 5px;">Hapus</button>
+<a href="{{ route('admin.test-result.export', ['test_result' => $test_result['id']]) }}" class="btn btn-info btn-sm" style="margin-top: 5px;" target="_blank">Cetak</a>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
