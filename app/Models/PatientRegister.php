@@ -31,6 +31,11 @@ class PatientRegister extends Model
         return $this->hasOne(TestResult::class);
     }
 
+    public function testResultDetail()
+    {
+        return $this->hasOneThrough(TestResultDetail::class, TestResult::class);
+    }
+
     public function patient()
     {
         return $this->belongsTo(Patient::class);

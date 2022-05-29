@@ -7,19 +7,8 @@ use App\Http\Controllers\admin\TestResultController as AdminTestResultControler;
 use App\Http\Controllers\front\PatientController;
 use App\Http\Controllers\front\PatientRegisterCheckController;
 use App\Http\Controllers\front\PatientRegisterController;
-use App\Models\PatientRegister;
+use App\Http\Controllers\front\TestResultController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::redirect('/', '/patient-register');
 
@@ -41,6 +30,12 @@ Route::post('check-patient-register', [PatientRegisterCheckController::class, 'c
 Route::get('check-patient-register/{registerNumber}', [PatientRegisterCheckController::class, 'show'])
     ->name('check-patient-register.show');
 
+//Test Result
+Route::get('test-result', [TestResultController::class, 'index'])->name('test-result.index');
+Route::post('test-result', [TestResultController::class, 'check'])->name('test-result.check');
+Route::get('test-result/{registerNumber}', [TestResultController::class, 'show'])->name('test-result.show');
+Route::get('test-result/{test_result}/export/', [TestResultController::class, 'export'])->name('test-result.export');
+
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
     Route::prefix('admin')->name('admin.')->group(function(){
         //Dashboard
@@ -52,8 +47,11 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
 
         //Route resources
         Route::resources([
-            'patient' => AdminPatientController::class, //Patient
-            'register-patient' => AdminPatientRegisterController::class, //Patient Register
+            //Patient
+            'patient' => AdminPatientController::class,
+
+            //Patient Register
+            'register-patient' => AdminPatientRegisterController::class,
 
             //Test result
             'test-result' => AdminTestResultControler::class,

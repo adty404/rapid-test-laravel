@@ -15,6 +15,11 @@
                                 Cek Data Pendaftaran
                             </a>
                         </li>
+                        <li class="{{ (request()->is('test-result*')) ? 'active' : '' }}">
+                            <a href="{{ route('test-result.index') }}">
+                                Hasil Rapid Test
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
