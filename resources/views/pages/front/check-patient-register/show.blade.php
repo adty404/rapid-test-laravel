@@ -102,8 +102,17 @@
                     <h3>Jadwal Rapid Test dan QR Code</h3>
                     <table>
                         <tr>
-                            <td width="45%"><b>Tanggal</b></td>
-                            <td width="10%"><b>:</b></td>
+                            <td width="65%"><b>Nomor Pendaftaran</b></td>
+                            <td width="30%"><b>:</b></td>
+                            <td style="font-size: 20px">
+                                <u>
+                                    <b>{{ $data->register_number }}</b>
+                                </u>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Tanggal</b></td>
+                            <td><b>:</b></td>
                             <td><b>{{ $data->start_date->format('Y-m-d') }}</b></td>
                         </tr>
                         <tr>

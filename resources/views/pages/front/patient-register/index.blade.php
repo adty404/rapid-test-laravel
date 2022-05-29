@@ -45,7 +45,15 @@
                 </div>
                 <h2>Form Pendaftaran Rapid Test</h2>
                 <p>
-                    Isi form pendaftaran berikut untuk melakukan pendaftaran rapid test
+                    Isi form pendaftaran berikut untuk melakukan pendaftaran rapid test.
+                </p>
+                <p>
+                    Jika ingin merubah jadwal/ada masalah lain silahkan hubungi admin pada kontak berikut:
+                    <u>
+                        <b>
+                            0813984654956 (WA / Telpon)
+                        </b>
+                    </u>
                 </p>
             </div>
             <div class="col-lg-8">
