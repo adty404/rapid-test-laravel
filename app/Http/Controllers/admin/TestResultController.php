@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TestResult\CreateTestResultRequest;
 use App\Http\Requests\TestResult\UpdateTestResultRequest;
+use App\Models\Patient;
 use App\Models\PatientRegister;
 use App\Models\TestResult;
 use Carbon\Carbon;
@@ -61,7 +62,7 @@ class TestResultController extends Controller
     public function create()
     {
         return view('pages.admin.test-result.create', [
-            'patient_register' => PatientRegister::doesntHave('testResult')->get()
+            'patient_register' => PatientRegister::doesntHave('testResult')->where('start_date', '<', now())->get('register_number')
         ]);
     }
 
@@ -73,6 +74,13 @@ class TestResultController extends Controller
      */
     public function store(CreateTestResultRequest $request)
     {
+        // is register number already tested on lab? checking start_date of test
+        $patient_register = PatientRegister::whereRegisterNumber($request->register_number)->first();
+        if($patient_register->start_date > now()){
+            Alert::error('Error', 'Jadwal test akan dilakukan pada ' . Carbon::parse($patient_register->start_date)->format('d M Y'));
+            return redirect()->route('admin.test-result.create');
+        }
+
         $data = $request->validated();
 
         //is register number exist?
