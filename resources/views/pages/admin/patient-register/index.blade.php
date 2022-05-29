@@ -119,7 +119,7 @@ Data Pendaftaran Pasien
                 },
             ],
         ajax: {
-            url: '{!! url()->current() !!}',
+            url: "{{ route('admin.data.admin-register-patient') }}",
         },
         dom: "Bfrtip",
         columns: [{
@@ -129,7 +129,7 @@ Data Pendaftaran Pasien
             },
             {
                 data: 'nik',
-                name: 'nik'
+                name: 'patients.nik'
             },
             {
                 data: 'register_number',

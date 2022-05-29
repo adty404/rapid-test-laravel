@@ -11,6 +11,7 @@ use App\Models\Patient;
 use App\Models\PatientRegister;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class PatientRegisterController extends Controller
@@ -22,41 +23,42 @@ class PatientRegisterController extends Controller
      */
     public function index()
     {
+        return view('pages.admin.patient-register.index');
+    }
+
+    public function getdata()
+    {
         $user = auth()->user();
 
         if ($user['role'] == 'admin') {
-            $query = PatientRegister::query();
+            $query = DB::table('patient_registers')
+                ->join('patients', 'patient_registers.patient_id', '=', 'patients.id')
+                ->select('patient_registers.*', 'patients.nik')
+                ->where('patient_registers.deleted_at', null)
+                ->orderBy('patient_registers.created_at', 'desc');
         }
 
-        if (request()->ajax()) {
-
-            return DataTables::of($query)
-                ->addColumn('aksi', function ($register_patient) {
-                    $register_patient = [
-                        'id' => $register_patient->id
-                    ];
-                    return view('pages.admin.patient-register.action')->with('register_patient', $register_patient);
-                })
-                ->addColumn('nik', function($register_patient){
-                    return $register_patient->patient['nik'];
-                })
-                ->addColumn('start_date', function($register_patient){
-                    return Carbon::parse($register_patient->start_date)->format('d M Y');
-                })
-                ->addColumn('end_date', function($register_patient){
-                    return Carbon::parse($register_patient->start_date)->format('H:i') . ' - ' . Carbon::parse($register_patient->end_date)->format('H:i');
-                })
-                ->addColumn('created_at', function($register_patient){
-                    return Carbon::parse($register_patient->created_at)->format('d M Y, H:i');
-                })
-                ->addColumn('updated_at', function($register_patient){
-                    return Carbon::parse($register_patient->updated_at)->format('d M Y, H:i');
-                })
-                ->addIndexColumn()
-                ->rawColumns(['aksi', 'nik', 'start_date', 'end_date', 'created_at', 'updated_at'])
-                ->make(true);
-        }
-        return view('pages.admin.patient-register.index');
+        return DataTables::of($query)
+            ->addColumn('aksi', function ($register_patient) {
+                $register_patient = [
+                    'id' => $register_patient->id
+                ];
+                return view('pages.admin.patient-register.action')->with('register_patient', $register_patient);
+            })
+            ->editColumn('start_date', function($register_patient){
+                return Carbon::parse($register_patient->start_date)->format('d M Y');
+            })
+            ->editColumn('end_date', function($register_patient){
+                return Carbon::parse($register_patient->start_date)->format('H:i') . ' - ' . Carbon::parse($register_patient->end_date)->format('H:i');
+            })
+            ->editColumn('created_at', function($register_patient){
+                return Carbon::parse($register_patient->created_at)->format('d M Y, H:i');
+            })
+            ->editColumn('updated_at', function($register_patient){
+                return Carbon::parse($register_patient->updated_at)->format('d M Y, H:i');
+            })
+            ->addIndexColumn()
+            ->make(true);
     }
 
     /**
@@ -131,6 +133,7 @@ class PatientRegisterController extends Controller
      */
     public function destroy(PatientRegister $register_patient)
     {
+        $register_patient->testResult->delete();
         $register_patient->delete();
 
         return redirect()->route('admin.register-patient.index');

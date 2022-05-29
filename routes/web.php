@@ -46,6 +46,10 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
         //Dashboard
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        // json for datatable
+        Route::get('data/register-patient', [AdminPatientRegisterController::class, 'getdata'])->name('data.admin-register-patient');
+        Route::get('data/test-result', [AdminTestResultControler::class, 'getdata'])->name('data.admin-test-result');
+
         //Route resources
         Route::resources([
             'patient' => AdminPatientController::class, //Patient
