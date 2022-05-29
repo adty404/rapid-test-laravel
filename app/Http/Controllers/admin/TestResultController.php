@@ -9,6 +9,7 @@ use App\Models\PatientRegister;
 use App\Models\TestResult;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 use PDF;
@@ -22,50 +23,34 @@ class TestResultController extends Controller
      */
     public function index()
     {
+        return view('pages.admin.test-result.index');
+    }
+
+    public function getdata()
+    {
         $user = auth()->user();
 
         if ($user['role'] == 'admin') {
-            $query = TestResult::with(['patientRegister.patient', 'testResultDetail']);
+            $query = DB::table('test_results')
+                ->join('patient_registers', 'test_results.patient_register_id', '=', 'patient_registers.id')
+                ->join('patients', 'patient_registers.patient_id', '=', 'patients.id')
+                ->join('test_result_detail', 'test_results.id', '=', 'test_result_detail.test_result_id')
+                ->select('test_results.*', 'patients.*', 'patient_registers.register_number', 'patient_registers.patient_id', 'test_result_detail.rujukan', 'test_result_detail.penanggung_jawab', 'test_result_detail.pemeriksa', 'test_result_detail.keterangan')
+                ->where('test_results.deleted_at', null);
         }
 
-        if (request()->ajax()) {
-
-            return DataTables::of($query)
+        return DataTables::of($query)
                 ->addColumn('aksi', function ($test_result) {
                     $test_result = [
                         'id' => $test_result->id
                     ];
                     return view('pages.admin.test-result.action')->with('test_result', $test_result);
                 })
-                ->addColumn('register_number', function ($test_result) {
-                    return $test_result->patientRegister['register_number'];
-                })
-                ->addColumn('nik', function ($test_result) {
-                    return $test_result->patientRegister->patient['nik'];
-                })
-                ->addColumn('name', function ($test_result) {
-                    return $test_result->patientRegister->patient['name'];
-                })
-                ->addColumn('updated_at', function ($test_result) {
+                ->editColumn('updated_at', function ($test_result) {
                     return Carbon::parse($test_result->updated_at)->format('d M Y, H:i');
                 })
-                ->addColumn('rujukan', function ($test_result) {
-                    return $test_result->testResultDetail['rujukan'];
-                })
-                ->addColumn('penanggung_jawab', function ($test_result) {
-                    return $test_result->testResultDetail['penanggung_jawab'];
-                })
-                ->addColumn('pemeriksa', function ($test_result) {
-                    return $test_result->testResultDetail['pemeriksa'];
-                })
-                ->addColumn('keterangan', function ($test_result) {
-                    return $test_result->testResultDetail['keterangan'];
-                })
                 ->addIndexColumn()
-                ->rawColumns(['aksi', 'register_number', 'nik', 'name', 'updated_at', 'rujukan', 'penanggung_jawab', 'pemeriksa', 'keterangan'])
                 ->make(true);
-        }
-        return view('pages.admin.test-result.index');
     }
 
     /**

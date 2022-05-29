@@ -122,7 +122,7 @@ Hasil Rapid Test
                 },
             ],
         ajax: {
-            url: '{!! url()->current() !!}',
+            url: "{{ route('admin.data.admin-test-result') }}",
         },
         dom: "Bfrtip",
         columns: [{
@@ -132,15 +132,15 @@ Hasil Rapid Test
             },
             {
                 data: 'register_number',
-                name: 'register_number'
+                name: 'patient_registers.register_number'
             },
             {
                 data: 'nik',
-                name: 'nik'
+                name: 'patients.nik'
             },
             {
                 data: 'name',
-                name: 'name'
+                name: 'patients.name'
             },
             {
                 data: 'result',
@@ -148,19 +148,19 @@ Hasil Rapid Test
             },
             {
                 data: 'rujukan',
-                name: 'rujukan',
+                name: 'test_result_detail.rujukan',
             },
             {
                 data: 'penanggung_jawab',
-                name: 'penanggung_jawab',
+                name: 'test_result_detail.penanggung_jawab',
             },
             {
                 data: 'pemeriksa',
-                name: 'pemeriksa',
+                name: 'test_result_detail.pemeriksa',
             },
             {
                 data: 'keterangan',
-                name: 'keterangan',
+                name: 'test_result_detail.keterangan',
             },
             {
                 data: 'updated_at',

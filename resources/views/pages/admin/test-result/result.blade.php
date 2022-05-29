@@ -97,7 +97,7 @@
                                 <td width="10%">:</td>
                                 {{-- <td>Jum'at, 12 Februari 2021</td> --}}
                                 <td>{{
-                                    \Carbon\Carbon::parse($test_result->patientRegister->start_date)->isoFormat('dddd, d
+                                    \Carbon\Carbon::parse($test_result->patientRegister->start_date)->isoFormat('dddd, D
                                     MMMM Y') }}</td>
                             </tr>
                             <tr>
@@ -122,7 +122,7 @@
             </div>
             <hr />
             <p style="padding-left: 50%;">
-                Tanggal Selesai : {{ \Carbon\Carbon::parse($test_result->patientRegister->start_date)->isoFormat('d MMMM
+                Tanggal Selesai : {{ \Carbon\Carbon::parse($test_result->patientRegister->start_date)->isoFormat('D MMMM
                 Y')
                 . ' / ' . \Carbon\Carbon::parse($test_result->patientRegister->end_date)->format('H:i:s') }}
             </p>
