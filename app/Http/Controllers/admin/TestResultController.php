@@ -32,26 +32,28 @@ class TestResultController extends Controller
         $user = auth()->user();
 
         if ($user['role'] == 'admin') {
-            $query = DB::table('test_results')
-                ->join('patient_registers', 'test_results.patient_register_id', '=', 'patient_registers.id')
-                ->join('patients', 'patient_registers.patient_id', '=', 'patients.id')
-                ->join('test_result_detail', 'test_results.id', '=', 'test_result_detail.test_result_id')
-                ->select('test_results.*', 'patients.*', 'patient_registers.register_number', 'patient_registers.patient_id', 'test_result_detail.rujukan', 'test_result_detail.penanggung_jawab', 'test_result_detail.pemeriksa', 'test_result_detail.keterangan')
-                ->where('test_results.deleted_at', null);
+            $query = DB::connection('mysql')->select("SELECT
+                tr.id , pr.register_number , p.nik , p.name , tr.result , trd.rujukan , trd.penanggung_jawab , trd.pemeriksa , trd.keterangan , trd.updated_at
+                FROM test_results tr
+                JOIN patient_registers pr ON tr.patient_register_id = pr.id
+                JOIN patients p ON pr.patient_id = p.id
+                JOIN test_result_detail trd ON tr.id = trd.test_result_id
+                WHERE tr.deleted_at IS NULL
+            ");
         }
 
         return DataTables::of($query)
-                ->addColumn('aksi', function ($test_result) {
-                    $test_result = [
-                        'id' => $test_result->id
-                    ];
-                    return view('pages.admin.test-result.action')->with('test_result', $test_result);
-                })
-                ->editColumn('updated_at', function ($test_result) {
-                    return Carbon::parse($test_result->updated_at)->format('d M Y, H:i');
-                })
-                ->addIndexColumn()
-                ->make(true);
+            ->addColumn('aksi', function ($test_result) {
+                $test_result = [
+                    'id' => $test_result->id
+                ];
+                return view('pages.admin.test-result.action')->with('test_result', $test_result);
+            })
+            ->editColumn('updated_at', function ($test_result) {
+                return Carbon::parse($test_result->updated_at)->format('d M Y, H:i');
+            })
+            ->addIndexColumn()
+            ->make(true);
     }
 
     /**
@@ -76,7 +78,7 @@ class TestResultController extends Controller
     {
         // is register number already tested on lab? checking start_date of test
         $patient_register = PatientRegister::whereRegisterNumber($request->register_number)->first();
-        if($patient_register->start_date > now()){
+        if ($patient_register->start_date > now()) {
             Alert::error('Error', 'Jadwal test akan dilakukan pada ' . Carbon::parse($patient_register->start_date)->format('d M Y'));
             return redirect()->route('admin.test-result.create');
         }
@@ -175,7 +177,7 @@ class TestResultController extends Controller
     {
         return view('pages.admin.test-result.result', [
             'test_result' => $test_result,
-            'file_name' =>  'hasil-lab-'.$test_result->patientRegister->register_number.''
+            'file_name' =>  'hasil-lab-' . $test_result->patientRegister->register_number . ''
         ]);
     }
 }
