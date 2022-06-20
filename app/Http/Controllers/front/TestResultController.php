@@ -29,7 +29,10 @@ class TestResultController extends Controller
         $test_result = PatientRegister::whereRegisterNumber($request->register_number)->first();
 
         if ($test_result) {
-            return redirect()->route('test-result.show', $request->register_number);
+            if($test_result->testResult()->exists()){
+                return redirect()->route('test-result.show', $request->register_number);
+            }
+            return redirect()->route('test-result.index')->with('data', 'Hasil belum tersedia!');;
         }
 
         return redirect()->route('test-result.index')->with('data', 'Nomor Registrasi tidak ditemukan!');
