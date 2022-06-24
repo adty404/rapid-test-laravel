@@ -51,7 +51,7 @@
                     Jika ingin merubah jadwal/ada masalah lain silahkan hubungi admin pada kontak berikut:
                     <u>
                         <b>
-                            0813984654956 (WA / Telpon)
+                            <a href="https://wa.me/6285659145846" target="_blank" style="text-decoration: none; !important">085659145846 (WA / Telpon)</a>
                         </b>
                     </u>
                 </p>

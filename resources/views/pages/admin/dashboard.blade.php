@@ -41,7 +41,8 @@ Dashboard
                         <div class="icon">
                             <i class="fa fa-building"></i>
                         </div>
-                        <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('admin.patient.index') }}" class="small-box-footer"><i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -56,7 +57,8 @@ Dashboard
                         <div class="icon">
                             <i class="fa fa-store"></i>
                         </div>
-                        <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('admin.register-patient.index') }}" class="small-box-footer"><i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -71,7 +73,8 @@ Dashboard
                         <div class="icon">
                             <i class="fa fa-clipboard-list"></i>
                         </div>
-                        <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('admin.test-result.index') }}" class="small-box-footer"><i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -86,7 +89,8 @@ Dashboard
                         <div class="icon">
                             <i class="fa fa-horse"></i>
                         </div>
-                        <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('admin.test-result.index') }}" class="small-box-footer"><i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
