@@ -34,9 +34,9 @@ Dashboard
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3 style="white-space: normal;">Name</h3>
+                            <h4 style="white-space: normal;">Total Pasien</h4>
 
-                            <p>Perusahaan</p>
+                            <p>{{ $total_pasien }}</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-building"></i>
@@ -49,9 +49,9 @@ Dashboard
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3 style="white-space: normal;">Name</h3>
+                            <h4 style="white-space: normal;">Total Pendaftaran (Today)</h4>
 
-                            <p>AAAAAA</p>
+                            <p>{{ $total_registration_today }}</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-store"></i>
@@ -64,9 +64,9 @@ Dashboard
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3 style="white-space: normal;">Name</h3>
+                            <h4 style="white-space: normal;">Total Sudah Test (Today)</h4>
 
-                            <p>Kategori</p>
+                            <p>{{ $total_rapid_test_done_today }}</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-clipboard-list"></i>
@@ -79,9 +79,9 @@ Dashboard
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3 style="white-space: normal;">Name</h3>
+                            <h4 style="white-space: normal;">Total Belum Test (Today)</h4>
 
-                            <p>aaaaa</p>
+                            <p>{{ $total_rapid_test_not_done_today }}</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-horse"></i>
