@@ -45,16 +45,16 @@ class PatientRegisterController extends Controller
                 ];
                 return view('pages.admin.patient-register.action')->with('register_patient', $register_patient);
             })
-            ->editColumn('start_date', function($register_patient){
+            ->editColumn('start_date', function ($register_patient) {
                 return Carbon::parse($register_patient->start_date)->format('d M Y');
             })
-            ->editColumn('end_date', function($register_patient){
+            ->editColumn('end_date', function ($register_patient) {
                 return Carbon::parse($register_patient->start_date)->format('H:i') . ' - ' . Carbon::parse($register_patient->end_date)->format('H:i');
             })
-            ->editColumn('created_at', function($register_patient){
+            ->editColumn('created_at', function ($register_patient) {
                 return Carbon::parse($register_patient->created_at)->format('d M Y, H:i');
             })
-            ->editColumn('updated_at', function($register_patient){
+            ->editColumn('updated_at', function ($register_patient) {
                 return Carbon::parse($register_patient->updated_at)->format('d M Y, H:i');
             })
             ->addIndexColumn()
@@ -133,8 +133,7 @@ class PatientRegisterController extends Controller
      */
     public function destroy(PatientRegister $register_patient)
     {
-        $register_patient->testResult->delete();
-        $register_patient->delete();
+        $register_patient->testResult ? $register_patient->testResult->delete() : $register_patient->delete();
 
         return redirect()->route('admin.register-patient.index');
     }
