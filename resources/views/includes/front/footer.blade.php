@@ -13,9 +13,9 @@
                                     <i class="lnr lnr-telephone"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h5>emergency call</h5>
-                                    <a href="tel:+8801676790690">
-                                        <h4>+61 (8) 8234 3555</h4>
+                                    <h5>Whatsapp</h5>
+                                    <a href="tel:+02129487893">
+                                        <h4>021-2948-7893</h4>
                                     </a>
                                 </div>
                             </div>
@@ -25,19 +25,8 @@
                                 </div>
                                 <div class="media-body">
                                     <p>
-                                        78-66 State Route 33,<br />
-                                        Brighton VIC 3186, AUSTRALIA
+                                        Metland Tambun Jl. Kalimaya VI Blok L2 No.1 - Tambun Bekasi 17510
                                     </p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="d-flex">
-                                    <i class="fab fa-skype"></i>
-                                </div>
-                                <div class="media-body">
-                                    <a href="skype:md.rocky79">
-                                        <h6>Skype ID: <span>epidemic.org</span></h6>
-                                    </a>
                                 </div>
                             </div>
                             <div class="media">
@@ -45,8 +34,8 @@
                                     <i class="lnr lnr-envelope-open"></i>
                                 </div>
                                 <div class="media-body">
-                                    <a href="mailto:rockybd1995@gmail.com">
-                                        <h6>Email: <span>hi@epidemic.org</span></h6>
+                                    <a href="mailto:klinikmutiara1@gmail.com">
+                                        <h6>Email: <span>klinikmutiara1@gmail.com</span></h6>
                                     </a>
                                 </div>
                             </div>
@@ -117,9 +106,11 @@
                             <h3>About</h3>
                         </div>
                         <p>
-                            The disease was first identified in 2019 in Wuhan, the
+                            {{-- The disease was first identified in 2019 in Wuhan, the
                             capital of Hubei, China, and has since spread globally,
-                            resulting in the 2019–2020 coronavirus pandemic.
+                            resulting in the 2019–2020 coronavirus pandemic. --}}
+                            Aplikasi Pendaftaran Rapid Test ini dibuat untuk memudahkan para pasien dalam melakukan
+                            pendaftaran pemeriksaan Covid-19.
                         </p>
                     </aside>
                 </div>

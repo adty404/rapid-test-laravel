@@ -47,7 +47,7 @@
     <div class="container">
         <div class="card">
             <div class="header">
-                <img src="https://picsum.photos/200" alt="logo" />
+                <img src="{{ asset('assets/images/logo-klinik-mutiara.jpg') }}" style="margin-right: 10px" alt="logo" />
                 <h2>MUTIARA - Laboratorium Klinik</h2>
             </div>
             <hr />
